@@ -1,6 +1,6 @@
 {
   "name": "json-renderers-run-instructions",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Reusable instruction execution and JSON-to-DOM mounting runtime for JSON renderers",
   "type": "module",
   "main": "src/index.js",
@@ -22,6 +22,6 @@
     "json-transformer-funcs-column-on-row": "^1.2.1"
   },
   "devDependencies": {
-    "spec-repo": "^1.7.2"
+    "spec-repo": "^1.7.5"
   }
 }
