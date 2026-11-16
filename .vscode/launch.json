@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug V4 Table Sample",
+      "program": "${workspaceFolder}/samples/v3/table/index.js",
+      "cwd": "${workspaceFolder}",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Current Active File",
+      "program": "${file}",
+      "cwd": "${fileDirname}",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+  ]
+}

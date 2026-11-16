@@ -7,25 +7,29 @@ import { definitions, spec } from "spec-repo";
 const start = () => {
     try {
         const def = definitions?.table?.simple;
+        const localBase = structuredClone(def?.base);
+        console.log("col group : ", localBase.children[0].children[0].children);
+        console.log("head : ", localBase.children[0].children[1].children[0].children);
+        console.log("body : ", localBase.children[0].children[2].children);
 
-        const registry = {
-            data: { columns, data },
-            base: structuredClone(def?.base),
-            spec
-        };
-
-        const result = runInstructions({
+        runInstructions({
             single: def?.single,
             rowOnColumn: def?.rowOnColumn,
-            registry,
+            data: { columns, data },
+            base: localBase,
             showLog: false
         });
 
         console.log("Table rendered successfully with rowOnColumn!");
-        console.log("base : ", result?.base?.children[0].children);
 
-        console.log("tbody rows count:", result.base.children[0].children[2].children.length);
-        console.log("first row cells:", result.base.children[0].children[2].children[0].children.length);
+        console.log("col group : ", localBase.children[0].children[0].children);
+        console.log("end : ", localBase.children[0].children[1].children[0].children);
+        console.log("body : ", localBase.children[0].children[2].children);
+
+        // console.log("base : ", result?.base?.children[0].children);
+
+        // console.log("tbody rows count:", result.base.children[0].children[2].children.length);
+        // console.log("first row cells:", result.base.children[0].children[2].children[0].children.length);
     } catch (error) {
         console.error("V3 Table initialization failed:", error);
     }

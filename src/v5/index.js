@@ -62,7 +62,7 @@ export const runInstructions = ({
     if (rowOnColumn.length > 0) runRowOnColumnInstructions({ instructions: rowOnColumn, base, data, showLog });
     if (columnOnRow.length > 0) runColumnOnRowInstructions({ instructions: columnOnRow, base, data, showLog });
 
-    return base;
+    return context;
 };
 
 export default runInstructions;
