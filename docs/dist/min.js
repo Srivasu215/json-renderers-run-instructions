@@ -6546,9 +6546,9 @@ var nr = /* @__PURE__ */ new Set([
 			narration: "Prepend the serial column width to the table colgroup.",
 			destinationPath: {
 				fileName: "base",
-				dataRole: "table-colgroup",
 				filePath: ["children"],
-				action: "unshift"
+				action: "unshift",
+				jsonPath: "$..*[?@.attributes['data-role'] == 'table-colgroup']"
 			},
 			sourcePath: null,
 			templateKey: "colGroupForSerial",
@@ -6558,9 +6558,9 @@ var nr = /* @__PURE__ */ new Set([
 			narration: "Prepend the serial header cell to the table header row.",
 			destinationPath: {
 				fileName: "base",
-				dataRole: "table-header-row",
 				filePath: ["children"],
-				action: "unshift"
+				action: "unshift",
+				jsonPath: "$..*[?@.attributes['data-role'] == 'table-header-row']"
 			},
 			sourcePath: null,
 			templateKey: "headerSerialCell",
@@ -6570,9 +6570,9 @@ var nr = /* @__PURE__ */ new Set([
 			narration: "Prepend the serial number cell into each table body row.",
 			destinationPath: {
 				fileName: "base",
-				dataRole: "table-body",
 				filePath: ["children"],
-				action: "unshiftSerialToRows"
+				action: "unshiftSerialToRows",
+				jsonPath: "$..*[?@.attributes['data-role'] == 'table-body']"
 			},
 			sourcePath: null,
 			templateKey: "buildBodyCell",
@@ -6582,9 +6582,9 @@ var nr = /* @__PURE__ */ new Set([
 			narration: "Prepend the serial footer cell to the table footer row.",
 			destinationPath: {
 				fileName: "base",
-				dataRole: "table-footer-row",
 				filePath: ["children"],
-				action: "unshift"
+				action: "unshift",
+				jsonPath: "$..*[?@.attributes['data-role'] == 'table-footer-row']"
 			},
 			sourcePath: null,
 			templateKey: "headerSerialCell",
@@ -6596,9 +6596,9 @@ var nr = /* @__PURE__ */ new Set([
 			narration: "Append the options column width to the table colgroup.",
 			destinationPath: {
 				fileName: "base",
-				dataRole: "table-colgroup",
 				filePath: ["children"],
-				action: "push"
+				action: "push",
+				jsonPath: "$..*[?@.attributes['data-role'] == 'table-colgroup']"
 			},
 			sourcePath: null,
 			templateKey: "colGroupForOption",
@@ -6608,9 +6608,9 @@ var nr = /* @__PURE__ */ new Set([
 			narration: "Append the options header cell to the table header row.",
 			destinationPath: {
 				fileName: "base",
-				dataRole: "table-header-row",
 				filePath: ["children"],
-				action: "push"
+				action: "push",
+				jsonPath: "$..*[?@.attributes['data-role'] == 'table-header-row']"
 			},
 			sourcePath: null,
 			templateKey: "headerForOption",
@@ -6620,9 +6620,9 @@ var nr = /* @__PURE__ */ new Set([
 			narration: "Append the options button cell into each table body row.",
 			destinationPath: {
 				fileName: "base",
-				dataRole: "table-body",
 				filePath: ["children"],
-				action: "pushToRows"
+				action: "pushToRows",
+				jsonPath: "$..*[?@.attributes['data-role'] == 'table-body']"
 			},
 			sourcePath: null,
 			templateKey: "optionsButtonCell",
@@ -6632,9 +6632,9 @@ var nr = /* @__PURE__ */ new Set([
 			narration: "Append the options footer cell to the table footer row.",
 			destinationPath: {
 				fileName: "base",
-				dataRole: "table-footer-row",
 				filePath: ["children"],
-				action: "push"
+				action: "push",
+				jsonPath: "$..*[?@.attributes['data-role'] == 'table-footer-row']"
 			},
 			sourcePath: null,
 			templateKey: "tdWithButtonSaveWarning",
@@ -6645,9 +6645,9 @@ var nr = /* @__PURE__ */ new Set([
 		narration: "Prepend the search row to top of the table.",
 		destinationPath: {
 			fileName: "base",
-			dataRole: "table-parent",
 			filePath: ["children"],
-			action: "unshift"
+			action: "unshift",
+			jsonPath: "$..*[?@.attributes['data-role'] == 'table-parent']"
 		},
 		sourcePath: null,
 		templateKey: "tableSearch",
@@ -6827,7 +6827,7 @@ Xi((e, t) => {
 	let n = e;
 	return Ji(n, t), n.map((e) => Y(e, e[t]));
 }, Zi);
-// node_modules/json-transformer-funcs-two-dimensions/src/v8/addRowData.js
+// node_modules/json-transformer-funcs-row-on-column/src/v2/addRowData.js
 var Qi = (e, t) => e.map((e) => ({
 	...e,
 	rowData: t[e.columnName]
@@ -6845,58 +6845,13 @@ var Qi = (e, t) => e.map((e) => ({
 		if (!n || typeof n != "object") throw TypeError(`inData[${e}] must be an object`);
 	}
 	return !0;
-}, $i = {
-	applyTemplate: Y,
-	fromCollection: Zi,
-	twoDimensional: ({ columns: e, data: t, columnSpec: n, rowSpec: r }) => {
-		X(e, t);
-		let i = e;
-		return t.map((e) => {
-			let t = Y(e, r);
-			return t.children = Zi(Qi(i, e), n), t;
-		});
-	}
-}, ea = ({ instruction: e, registry: t, showLog: n, returnLog: r }) => {
-	let i = Pi, a = $i[e.func]({
-		columns: t?.data?.columns,
-		data: t?.data?.data,
-		columnSpec: i[e?.templateKey?.columnKey],
-		rowSpec: i[e?.templateKey?.rowKey]
-	});
-	$t(t, e.destinationPath, a);
-}, ta = ({ instructions: e, registry: t, showLog: n, returnLog: r }) => {
-	e.forEach((e) => {
-		ea({
-			instruction: e,
-			registry: t,
-			showLog: n,
-			returnLog: r
-		});
-	});
-}, na = (e, t) => e.map((e) => ({
-	...e,
-	rowData: t[e.columnName]
-})), ra = (e, t) => {
-	if (!Array.isArray(e)) throw TypeError("inColumns must be an Array");
-	if (e.length === 0) throw Error("inColumns cannot be empty");
-	for (let t = 0; t < e.length; t++) {
-		let n = e[t];
-		if (!n || typeof n != "object") throw TypeError(`inColumns[${t}] must be an object`);
-		if (typeof n.columnName != "string" || !n.columnName.trim()) throw TypeError(`inColumns[${t}].columnName must be a non-empty string`);
-	}
-	if (!Array.isArray(t)) throw TypeError("inData must be an Array");
-	for (let e = 0; e < t.length; e++) {
-		let n = t[e];
-		if (!n || typeof n != "object") throw TypeError(`inData[${e}] must be an object`);
-	}
-	return !0;
-}, ia = ({ columns: e, data: t, columnSpec: n, rowSpec: r }) => (ra(e, t), t.map((t) => {
+}, $i = ({ columns: e, data: t, columnSpec: n, rowSpec: r }) => (X(e, t), t.map((t) => {
 	let i = Y(t, r);
-	return i.children = Zi(na(e, t), n), i;
-})), aa = (e, t) => t.map((t) => ({
+	return i.children = Zi(Qi(e, t), n), i;
+})), ea = (e, t) => t.map((t) => ({
 	...e,
 	rowData: t[e.columnName]
-})), oa = (e, t) => {
+})), ta = (e, t) => {
 	if (!Array.isArray(e)) throw TypeError("inColumns must be an Array");
 	if (e.length === 0) throw Error("inColumns cannot be empty");
 	for (let t = 0; t < e.length; t++) {
@@ -6910,12 +6865,12 @@ var Qi = (e, t) => e.map((e) => ({
 		if (!n || typeof n != "object") throw TypeError(`inData[${e}] must be an object`);
 	}
 	return !0;
-}, sa = ({ columns: e, data: t, columnSpec: n, rowSpec: r }) => (oa(e, t), e.map((e) => {
+}, na = ({ columns: e, data: t, columnSpec: n, rowSpec: r }) => (ta(e, t), e.map((e) => {
 	let i = Y(e, n);
-	return i.children = t.length > 0 ? Zi(aa(e, t), r) : [], i;
-})), ca = ({ instructions: e = [], base: t, data: n, showLog: r = !1 } = {}) => {
+	return i.children = t.length > 0 ? Zi(ea(e, t), r) : [], i;
+})), ra = ({ instructions: e = [], base: t, data: n, showLog: r = !1 } = {}) => {
 	e.forEach((e) => {
-		let i = Pi[e?.templateKey?.columnKey], a = Pi[e?.templateKey?.rowKey], o = ia({
+		let i = Pi[e?.templateKey?.columnKey], a = Pi[e?.templateKey?.rowKey], o = $i({
 			columns: n?.columns,
 			data: n?.data,
 			columnSpec: i,
@@ -6924,11 +6879,11 @@ var Qi = (e, t) => e.map((e) => ({
 		r && console.log("[runInstructions:rowOnColumn]", e.narration, o), $t({
 			base: t,
 			data: n
-		}, e.destinationPath, o);
+		}, e.destinationPath, o, r);
 	});
-}, la = ({ instructions: e = [], base: t, data: n, showLog: r = !1 } = {}) => {
+}, ia = ({ instructions: e = [], base: t, data: n, showLog: r = !1 } = {}) => {
 	e.forEach((e) => {
-		let i = Pi[e?.templateKey?.columnKey], a = Pi[e?.templateKey?.rowKey], o = sa({
+		let i = Pi[e?.templateKey?.columnKey], a = Pi[e?.templateKey?.rowKey], o = na({
 			columns: n?.columns,
 			data: n?.data,
 			columnSpec: i,
@@ -6937,38 +6892,32 @@ var Qi = (e, t) => e.map((e) => ({
 		r && console.log("[runInstructions:columnOnRow]", e.narration, o), $t({
 			base: t,
 			data: n
-		}, e.destinationPath, o);
+		}, e.destinationPath, o, r);
 	});
-}, ua = ({ single: e = [], double: t = [], rowOnColumn: n = [], columnOnRow: r = [], base: i, data: a, showLog: o = !1 } = {}) => {
-	if (o && console.log("runInstructions input:", {
-		single: e,
-		double: t,
-		rowOnColumn: n,
-		columnOnRow: r,
-		base: i,
-		data: a
-	}), !Array.isArray(e)) throw TypeError("single instructions must be an array");
-	if (!Array.isArray(t)) throw TypeError("double instructions must be an array");
-	if (!Array.isArray(n)) throw TypeError("rowOnColumn instructions must be an array");
-	if (!Array.isArray(r)) throw TypeError("columnOnRow instructions must be an array");
-	let s = {
-		base: i,
-		data: a
+}, aa = ({ single: e = [], rowOnColumn: t = [], columnOnRow: n = [], base: r, data: i, showLog: a = !1 } = {}) => {
+	if (!Array.isArray(e)) throw TypeError("single instructions must be an array");
+	if (!Array.isArray(t)) throw TypeError("rowOnColumn instructions must be an array");
+	if (!Array.isArray(n)) throw TypeError("columnOnRow instructions must be an array");
+	let o = {
+		base: r,
+		data: i
 	};
-	return e.length > 0 && zi(e, s, o), t.length > 0 && ta({
+	return a && console.log("runInstructions input:", {
+		single: e,
+		rowOnColumn: t,
+		columnOnRow: n,
+		base: r,
+		data: i
+	}), e.length && zi(e, o, a), t.length && ra({
 		instructions: t,
-		registry: s,
-		showLog: o
-	}), n.length > 0 && ca({
+		base: r,
+		data: i,
+		showLog: a
+	}), n.length && ia({
 		instructions: n,
-		base: i,
-		data: a,
-		showLog: o
-	}), r.length > 0 && la({
-		instructions: r,
-		base: i,
-		data: a,
-		showLog: o
-	}), s;
+		base: r,
+		data: i,
+		showLog: a
+	}), o;
 };
-export { ua as default, ua as runInstructions };
+export { aa as default, aa as runInstructions };
