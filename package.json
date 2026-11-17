@@ -1,6 +1,6 @@
 {
   "name": "json-renderers-run-instructions",
-  "version": "1.8.1",
+  "version": "1.9.1",
   "description": "Reusable instruction execution and JSON-to-DOM mounting runtime for JSON renderers",
   "type": "module",
   "main": "src/index.js",
@@ -16,14 +16,15 @@
     "build": "npx @keshavsoft/build-cli"
   },
   "dependencies": {
+    "json-renderers-run-options": "^1.2.1",
     "json-transformer-funcs-one-dimension": "^1.9.9",
     "json-transformer-funcs-primitive": "^1.9.3",
     "json-transformer-funcs-row-on-column": "^1.2.1",
     "json-write-path": "^1.6.1",
     "jsonpathly": "^4.0.0",
-    "spec-repo": "^1.16.1"
+    "spec-repo": "^1.17.1"
   },
   "devDependencies": {
-    "spec-repo": "^1.16.1"
+    "spec-repo": "^1.17.1"
   }
 }
