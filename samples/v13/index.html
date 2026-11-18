@@ -36,7 +36,65 @@
             <p class="text-muted">Zero-code HTML UI components driven entirely by <code>spec-repo</code> and <code>runInstruction</code></p>
         </div>
 
-        <!-- NEW COMPONENTS SECTION -->
+        <!-- 1. FORMS & INPUTS SECTION -->
+        <div class="mb-5">
+            <div class="d-flex justify-content-between align-items-center section-header">
+                <h4 class="fw-bold text-dark mb-0">Forms, Selects & DataLists</h4>
+                <span class="badge bg-success px-3 py-2">Forms & Inputs</span>
+            </div>
+
+            <div class="row g-4">
+                <!-- Form -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="fw-bold mb-0">Form</h5>
+                                <span class="badge bg-success-subtle text-success border border-success">form.simple</span>
+                            </div>
+                            <p class="text-muted small flex-grow-1">
+                                Complete data entry form with card container, header title, dynamically generated field inputs from columns schema, reset, and submit buttons.
+                            </p>
+                            <a href="./form/" class="btn btn-outline-success w-100 mt-3">Open Form &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Select -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="fw-bold mb-0">Select</h5>
+                                <span class="badge bg-primary-subtle text-primary border border-primary">select.simple</span>
+                            </div>
+                            <p class="text-muted small flex-grow-1">
+                                Dynamic <code>&lt;select&gt;</code> dropdown elements populated with option items via <code>columnOnRow</code> transformation.
+                            </p>
+                            <a href="./select/" class="btn btn-outline-primary w-100 mt-3">Open Select &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DataList -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="fw-bold mb-0">DataList</h5>
+                                <span class="badge bg-info-subtle text-info border border-info">dataList.simple</span>
+                            </div>
+                            <p class="text-muted small flex-grow-1">
+                                Autocomplete <code>&lt;datalist&gt;</code> controls providing live suggestions for text input fields without external libraries.
+                            </p>
+                            <a href="./dataList/" class="btn btn-outline-info w-100 mt-3">Open DataList &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. COMPONENTS SECTION -->
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center section-header">
                 <h4 class="fw-bold text-dark mb-0">Components Catalog (Accordion, Cards, Lists, Menus)</h4>
@@ -55,7 +113,7 @@
                             <p class="text-muted small flex-grow-1">
                                 Interactive collapsible content panels. Supports multi-item looping, collapse states, and clean Bootstrap 5 collapse styling.
                             </p>
-                            <a href="./accordion/index.html" class="btn btn-outline-primary w-100 mt-3">Open Accordion &rarr;</a>
+                            <a href="./accordion/" class="btn btn-outline-primary w-100 mt-3">Open Accordion &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -71,7 +129,7 @@
                             <p class="text-muted small flex-grow-1">
                                 Structural content containers featuring <code>card.simple</code>, <code>card.withHeader</code>, and <code>card.withFooter</code>.
                             </p>
-                            <a href="./card/index.html" class="btn btn-outline-info w-100 mt-3">Open Cards &rarr;</a>
+                            <a href="./card/" class="btn btn-outline-info w-100 mt-3">Open Cards &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -87,7 +145,7 @@
                             <p class="text-muted small flex-grow-1">
                                 Structured lists including Bootstrap <code>list.group</code> with custom notification badges and <code>list.ordered</code> numbered items.
                             </p>
-                            <a href="./list/index.html" class="btn btn-outline-warning w-100 mt-3">Open Lists &rarr;</a>
+                            <a href="./list/" class="btn btn-outline-warning w-100 mt-3">Open Lists &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -103,14 +161,14 @@
                             <p class="text-muted small flex-grow-1">
                                 Navigation components featuring vertical navigation (<code>menu.simple</code>) and responsive interactive dashboard cards (<code>menu.cards</code>).
                             </p>
-                            <a href="./menu/index.html" class="btn btn-outline-danger w-100 mt-3">Open Menus &rarr;</a>
+                            <a href="./menu/" class="btn btn-outline-danger w-100 mt-3">Open Menus &rarr;</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TABLE SECTION -->
+        <!-- 3. TABLE SECTION -->
         <div class="mb-5">
             <div class="d-flex justify-content-between align-items-center section-header">
                 <h4 class="fw-bold text-dark mb-0">Table Variants & Options</h4>
@@ -129,7 +187,7 @@
                             <p class="text-muted small flex-grow-1">
                                 Renders colgroup and header row. Supports search toolbar and header serial cell (#).
                             </p>
-                            <a href="./headerOnly/index.html" class="btn btn-outline-primary w-100 mt-3">Open Header Only &rarr;</a>
+                            <a href="./headerOnly/" class="btn btn-outline-primary w-100 mt-3">Open Header Only &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -145,7 +203,7 @@
                             <p class="text-muted small flex-grow-1">
                                 Standard data table with colgroup, header, and populated body rows. Supports full search toolbar, unified serial numbering, and row action buttons.
                             </p>
-                            <a href="./simple/index.html" class="btn btn-outline-success w-100 mt-3">Open Simple Table &rarr;</a>
+                            <a href="./simple/" class="btn btn-outline-success w-100 mt-3">Open Simple Table &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -161,7 +219,7 @@
                             <p class="text-muted small flex-grow-1">
                                 Complete table containing colgroup, header, body, and tfoot totals row. Supports full search, serial, and action button options.
                             </p>
-                            <a href="./withFooter/index.html" class="btn btn-outline-warning w-100 mt-3">Open With Footer &rarr;</a>
+                            <a href="./withFooter/" class="btn btn-outline-warning w-100 mt-3">Open With Footer &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -177,7 +235,7 @@
                             <p class="text-muted small flex-grow-1">
                                 Renders tbody rows only. Dedicated to partial DOM updates and infinite scroll appends. Supports row serial numbering.
                             </p>
-                            <a href="./bodyOnly/index.html" class="btn btn-outline-secondary w-100 mt-3">Open Body Only &rarr;</a>
+                            <a href="./bodyOnly/" class="btn btn-outline-secondary w-100 mt-3">Open Body Only &rarr;</a>
                         </div>
                     </div>
                 </div>
