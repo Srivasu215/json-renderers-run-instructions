@@ -179,7 +179,7 @@ const startFunc = ({
     const instructionsToRun = definition.instructions ?? [];
     const optionDefs = (definition.options && typeof definition.options === "object")
         ? definition.options
-        : (instructions.options?.[definition.options] ?? {});
+        : (definitions[instructionMainKey]?.options ?? instructions.options?.[definition.options] ?? {});
 
     const base = structuredClone(spec[baseKey]);
 
