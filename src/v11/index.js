@@ -25,6 +25,7 @@ const resolveSource = (sourcePath, context) => {
     if (sourcePath.jsonPath) {
         const matches = query(root, sourcePath.jsonPath, { returnArray: true });
         if (matches.length === 0) {
+            if (Array.isArray(root)) return root;
             return [];
         }
         return matches.length === 1 ? matches[0] : matches;
