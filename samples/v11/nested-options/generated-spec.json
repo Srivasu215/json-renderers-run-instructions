@@ -1,0 +1,635 @@
+{
+    "tagName": "div",
+    "attributes": {
+        "data-role": "table-parent",
+        "id": "table-simple-id"
+    },
+    "children": [
+        {
+            "tagName": "div",
+            "attributes": {
+                "class": "row mb-3 align-items-center",
+                "data-role": "search-toolbar"
+            },
+            "children": [
+                {
+                    "tagName": "div",
+                    "attributes": {
+                        "class": "col-md-4 d-flex align-items-center",
+                        "data-role": "search-label-slot"
+                    },
+                    "children": [
+                        {
+                            "tagName": "h6",
+                            "textContent": "Items",
+                            "attributes": {
+                                "class": "mb-0 fw-semibold text-secondary",
+                                "id": "table-title"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "tagName": "div",
+                    "attributes": {
+                        "class": "col-md-4 text-center d-flex align-items-center justify-content-center",
+                        "data-role": "search-helper-slot"
+                    },
+                    "children": [
+                        {
+                            "tagName": "span",
+                            "textContent": "Showing all records",
+                            "attributes": {
+                                "id": "search-feedback",
+                                "class": "badge bg-white text-secondary border px-3 py-2 small fw-normal shadow-sm"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "tagName": "div",
+                    "attributes": {
+                        "class": "col-md-4",
+                        "data-role": "search-input-slot"
+                    },
+                    "children": [
+                        {
+                            "tagName": "div",
+                            "attributes": {
+                                "class": "input-group"
+                            },
+                            "children": [
+                                {
+                                    "tagName": "span",
+                                    "attributes": {
+                                        "class": "input-group-text bg-white"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "i",
+                                            "attributes": {
+                                                "class": "bi bi-search"
+                                            },
+                                            "textContent": "🔍"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tagName": "input",
+                                    "attributes": {
+                                        "type": "text",
+                                        "id": "tableSearch",
+                                        "class": "form-control",
+                                        "placeholder": "Search table..."
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "tagName": "table",
+            "attributes": {
+                "class": "table table-hover table-striped align-middle border mb-0",
+                "id": "table-simple-table-id"
+            },
+            "children": [
+                {
+                    "tagName": "colgroup",
+                    "attributes": {
+                        "data-role": "table-colgroup",
+                        "id": "table-simple-colgroup-id"
+                    },
+                    "children": [
+                        {
+                            "tagName": "col",
+                            "attributes": {
+                                "width": "50px"
+                            }
+                        },
+                        {
+                            "tagName": "col",
+                            "attributes": {
+                                "width": "260px"
+                            }
+                        },
+                        {
+                            "tagName": "col",
+                            "attributes": {
+                                "width": "180px"
+                            }
+                        },
+                        {
+                            "tagName": "col",
+                            "attributes": {
+                                "width": "120px"
+                            }
+                        },
+                        {
+                            "tagName": "col",
+                            "attributes": {
+                                "width": "100px"
+                            }
+                        },
+                        {
+                            "tagName": "col",
+                            "attributes": {
+                                "width": "80px"
+                            }
+                        },
+                        {
+                            "tagName": "col",
+                            "attributes": {
+                                "width": "90px"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "tagName": "thead",
+                    "attributes": {
+                        "class": "table-dark",
+                        "data-role": "table-header",
+                        "id": "table-simple-header-id"
+                    },
+                    "children": [
+                        {
+                            "tagName": "tr",
+                            "attributes": {
+                                "data-role": "table-header-row",
+                                "id": "table-simple-header-row-id"
+                            },
+                            "children": [
+                                {
+                                    "tagName": "th",
+                                    "textContent": "#",
+                                    "attributes": {
+                                        "class": "py-3 px-3 fw-semibold text-uppercase small"
+                                    }
+                                },
+                                {
+                                    "tagName": "th",
+                                    "textContent": "itemName",
+                                    "attributes": {
+                                        "class": "py-3 px-3 fw-semibold text-uppercase small"
+                                    }
+                                },
+                                {
+                                    "tagName": "th",
+                                    "textContent": "category",
+                                    "attributes": {
+                                        "class": "py-3 px-3 fw-semibold text-uppercase small"
+                                    }
+                                },
+                                {
+                                    "tagName": "th",
+                                    "textContent": "baseUnit",
+                                    "attributes": {
+                                        "class": "py-3 px-3 fw-semibold text-uppercase small"
+                                    }
+                                },
+                                {
+                                    "tagName": "th",
+                                    "textContent": "options",
+                                    "attributes": {
+                                        "class": "py-3 px-3 fw-semibold text-uppercase small"
+                                    }
+                                },
+                                {
+                                    "tagName": "th",
+                                    "textContent": "edit",
+                                    "attributes": {
+                                        "class": "py-3 px-3 fw-semibold text-uppercase small"
+                                    }
+                                },
+                                {
+                                    "tagName": "th",
+                                    "textContent": "delete",
+                                    "attributes": {
+                                        "class": "py-3 px-3 fw-semibold text-uppercase small"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "tagName": "tbody",
+                    "attributes": {
+                        "data-role": "table-body",
+                        "id": "table-simple-body-id"
+                    },
+                    "children": [
+                        {
+                            "tagName": "tr",
+                            "attributes": {
+                                "class": "align-middle"
+                            },
+                            "children": [
+                                {
+                                    "tagName": "td",
+                                    "textContent": 1,
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "0.09/30mm High Tensile Bolt",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "Fasteners",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "kgs",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "show",
+                                            "attributes": {
+                                                "class": "btn btn-primary btn-sm ks-btn-show"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "edit",
+                                            "attributes": {
+                                                "class": "btn btn-secondary btn-sm ks-btn-edit"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "delete",
+                                            "attributes": {
+                                                "class": "btn btn-danger btn-sm ks-btn-delete"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "tagName": "tr",
+                            "attributes": {
+                                "class": "align-middle"
+                            },
+                            "children": [
+                                {
+                                    "tagName": "td",
+                                    "textContent": 2,
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "0.11-25 Galvanized Wire Coil",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "Raw Materials",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "kgs",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "show",
+                                            "attributes": {
+                                                "class": "btn btn-primary btn-sm ks-btn-show"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "edit",
+                                            "attributes": {
+                                                "class": "btn btn-secondary btn-sm ks-btn-edit"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "delete",
+                                            "attributes": {
+                                                "class": "btn btn-danger btn-sm ks-btn-delete"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "tagName": "tr",
+                            "attributes": {
+                                "class": "align-middle"
+                            },
+                            "children": [
+                                {
+                                    "tagName": "td",
+                                    "textContent": 3,
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "0.11-30 Stainless Steel Rod",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "Raw Materials",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "pcs",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "show",
+                                            "attributes": {
+                                                "class": "btn btn-primary btn-sm ks-btn-show"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "edit",
+                                            "attributes": {
+                                                "class": "btn btn-secondary btn-sm ks-btn-edit"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "delete",
+                                            "attributes": {
+                                                "class": "btn btn-danger btn-sm ks-btn-delete"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "tagName": "tr",
+                            "attributes": {
+                                "class": "align-middle"
+                            },
+                            "children": [
+                                {
+                                    "tagName": "td",
+                                    "textContent": 4,
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "0.15-40 Brass Hex Nut",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "Fasteners",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "boxes",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "show",
+                                            "attributes": {
+                                                "class": "btn btn-primary btn-sm ks-btn-show"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "edit",
+                                            "attributes": {
+                                                "class": "btn btn-secondary btn-sm ks-btn-edit"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "delete",
+                                            "attributes": {
+                                                "class": "btn btn-danger btn-sm ks-btn-delete"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "tagName": "tr",
+                            "attributes": {
+                                "class": "align-middle"
+                            },
+                            "children": [
+                                {
+                                    "tagName": "td",
+                                    "textContent": 5,
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "0.20-50 Aluminum Profile",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "Extrusions",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "textContent": "meters",
+                                    "attributes": {
+                                        "class": "py-3 px-3 text-secondary"
+                                    }
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "show",
+                                            "attributes": {
+                                                "class": "btn btn-primary btn-sm ks-btn-show"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "edit",
+                                            "attributes": {
+                                                "class": "btn btn-secondary btn-sm ks-btn-edit"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "tagName": "td",
+                                    "attributes": {
+                                        "class": "py-2 px-3 text-center"
+                                    },
+                                    "children": [
+                                        {
+                                            "tagName": "button",
+                                            "textContent": "delete",
+                                            "attributes": {
+                                                "class": "btn btn-danger btn-sm ks-btn-delete"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
