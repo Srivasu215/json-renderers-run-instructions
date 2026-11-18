@@ -63,6 +63,11 @@ const executeInstruction = ({ instruction, context, spec, showLog = false }) => 
         instruction.destinationPath.jsonPath = `$..*[?@.attributes['data-role'] == '${instruction.destinationPath.dataRole}']`;
     }
 
+    // Skip if instruction has skipIf condition and target already exists
+    if (instruction.skipIf && query(context.base, instruction.skipIf, { returnArray: true }).length > 0) {
+        return null;
+    }
+
     // If destination node does not exist in current base (e.g. footer row on a table without footer), safely skip
     if (!checkDestinationExists(instruction.destinationPath, context)) {
         if (showLog) {
@@ -137,7 +142,7 @@ const executeInstruction = ({ instruction, context, spec, showLog = false }) => 
 
     let result;
     if (instruction.func === null || instruction.func === undefined) {
-        result = template;
+        result = structuredClone(template);
     } else if (transformerFunctions[instruction.func]) {
         result = transformerFunctions[instruction.func](source, template);
     } else {
@@ -172,9 +177,9 @@ const startFunc = ({
 
     const baseKey = definition.baseFromSpec;
     const instructionsToRun = definition.instructions ?? [];
-    const optionDefs = definition.options
-        ? instructions.options?.[definition.options] ?? {}
-        : {};
+    const optionDefs = (definition.options && typeof definition.options === "object")
+        ? definition.options
+        : (instructions.options?.[definition.options] ?? {});
 
     const base = structuredClone(spec[baseKey]);
 
@@ -201,6 +206,7 @@ const startFunc = ({
         optionDefs,
         instructions,
         spec,
+        executeInstruction: ({ instruction }) => executeInstruction({ instruction, context, spec, showLog }),
         showLog
     });
 

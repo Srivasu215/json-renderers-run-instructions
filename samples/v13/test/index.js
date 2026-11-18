@@ -1,7 +1,7 @@
 import columns from "./columns.json" with { type: "json" };
 import data from "./data.json" with { type: "json" };
 
-import runInstruction from "../../../docs/dist/v10/min.js";
+import runInstruction from "../../../docs/dist/v11/min.js";
 
 const start = () => {
     try {
@@ -13,7 +13,11 @@ const start = () => {
             options: {
                 showSearch: {
                     showLabel: true,
-                    showHelper: true
+                    showHelper: true,
+                    showInput: true
+                },
+                showSerial: {
+                    showRootSerial: true
                 }
             }
         });

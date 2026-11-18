@@ -1,66 +1,65 @@
-import { instructions as defaultInstructions, spec as defaultSpec } from "spec-repo";
-import runSingleInstructions from "json-instruction-single";
-import instructionsWithTargets from "./instructionsWithTargets/index.js";
-
 const isObject = value => value !== null && typeof value === "object" && !Array.isArray(value);
 
-const resolve = (reference, library) => {
-    if (Array.isArray(reference)) return reference.flatMap(item => resolve(item, library));
-    if (typeof reference === "string") return resolve(library[reference], library);
-    if (isObject(reference)) return [reference];
-    return [];
-};
-
-const execute = (reference, context, library, showLog) => {
-    const resolved = resolve(reference, library);
-    const ready = instructionsWithTargets(resolved, context.base);
-
-    if (showLog) console.log("[runOptions]", { reference, resolved: resolved.length, ready: ready.length });
-    if (ready.length) runSingleInstructions(ready, context, showLog);
-};
-
-const getSelected = (options, feature) => {
+const getFeatureOptions = (options, featureKey) => {
     if (!isObject(options)) return null;
-    if (options[feature] !== undefined) return options[feature];
-    const prefixed = `show${feature.charAt(0).toUpperCase()}${feature.slice(1)}`;
+    if (options[featureKey] !== undefined) return options[featureKey];
+    const prefixed = `show${featureKey.charAt(0).toUpperCase()}${featureKey.slice(1)}`;
     if (options[prefixed] !== undefined) return options[prefixed];
     return null;
 };
 
-/** Apply the enabled option switches defined by spec-repo. */
+/**
+ * 2-level loop for applying option switches from definitions.json:
+ * Level 1: Loop over feature groups (search, serial, options)
+ * Level 2: Loop over switches inside the feature (showLabel, showHelper, showInput...)
+ */
 const runOptions = ({
     base,
     options = {},
     optionDefs = {},
-    instructions = defaultInstructions,
-    spec = defaultSpec,
+    instructions = {},
+    spec = {},
+    executeInstruction,
     showLog = false
 } = {}) => {
-    if (!base || !isObject(options)) return base;
+    if (!base || !isObject(options) || !isObject(optionDefs) || typeof executeInstruction !== "function") {
+        return base;
+    }
 
-    const context = { base, spec: structuredClone(spec) };
+    // Level 1: Loop over feature groups (e.g. search, serial, options)
+    for (const [featureKey, featureSwitches] of Object.entries(optionDefs)) {
+        if (!isObject(featureSwitches)) continue;
 
-    for (const [feature, switches] of Object.entries(optionDefs)) {
-        if (!isObject(switches)) continue;
+        const userFeature = getFeatureOptions(options, featureKey);
+        if (!userFeature) continue;
 
-        const selected = getSelected(options, feature);
-        if (!selected) continue;
-
-        const isBool = typeof selected === "boolean" && selected === true;
-        const isObj = isObject(selected);
+        const isBool = typeof userFeature === "boolean" && userFeature === true;
+        const isObj = isObject(userFeature);
         if (!isBool && !isObj) continue;
 
-        const enabled = Object.entries(switches)
-            .filter(([name]) => name !== "initialize" && (isBool || selected[name] === true));
+        // Check if any switch in this feature group is active
+        const hasActiveSwitch = Object.entries(featureSwitches).some(
+            ([switchKey]) => switchKey !== "initialize" && (isBool || userFeature[switchKey] === true)
+        );
+        if (!hasActiveSwitch) continue;
 
-        if (!enabled.length) continue;
-
-        if (switches.initialize) {
-            execute(switches.initialize, context, instructions, showLog);
+        // Step 1: Run initialize instruction first if present (e.g. "searchFrame")
+        if (featureSwitches.initialize && instructions[featureSwitches.initialize]) {
+            executeInstruction({
+                instruction: instructions[featureSwitches.initialize]
+            });
         }
 
-        for (const [, instructionRef] of enabled) {
-            execute(instructionRef, context, instructions, showLog);
+        // Level 2: Loop over switches and execute each enabled instruction (e.g. "searchLabel")
+        for (const [switchKey, instructionKey] of Object.entries(featureSwitches)) {
+            if (switchKey === "initialize") continue;
+
+            const isEnabled = isBool || userFeature[switchKey] === true;
+            if (isEnabled && instructions[instructionKey]) {
+                executeInstruction({
+                    instruction: instructions[instructionKey]
+                });
+            }
         }
     }
 
