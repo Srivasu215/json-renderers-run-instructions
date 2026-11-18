@@ -2,246 +2,183 @@
 <html lang="en">
 
 <head>
+    <script>
+        if (!location.pathname.endsWith('/') && !location.pathname.endsWith('.html')) {
+            location.replace(location.pathname + '/' + location.search + location.hash);
+        }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V13 UI Catalog & Component Showcase</title>
+    <title>Declarative UI Launch Pad | V14</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #f8fafc;
             font-family: system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
-        .card {
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        .category-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08) !important;
         }
 
-        .section-header {
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+        .tag-pill {
+            display: inline-block;
+            font-size: 0.76rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 9999px;
+            font-weight: 500;
         }
     </style>
 </head>
 
 <body class="py-5">
-    <div class="container" style="max-width: 1040px;">
+    <div class="container-fluid" style="max-width: 1240px;">
+        <!-- HERO TITLE -->
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Declarative HTML UI Catalog</h2>
-            <p class="text-muted">Zero-code HTML UI components driven entirely by <code>spec-repo</code> and <code>runInstruction</code></p>
+            <span class="badge bg-dark px-3 py-2 text-uppercase letter-spacing-1 mb-2">V14 Architecture</span>
+            <h1 class="fw-bold text-dark display-5">Declarative UI Launch Pad</h1>
+            <p class="text-muted mx-auto lead" style="max-width: 720px;">
+                4-tier system: <strong>Direct</strong> inputs, <strong>Containers</strong>, compound <strong>Compose</strong> layouts, and interactive <strong>Composite</strong> master-detail workflows.
+            </p>
         </div>
 
-        <!-- 1. FORMS & INPUTS SECTION -->
-        <div class="mb-5">
-            <div class="d-flex justify-content-between align-items-center section-header">
-                <h4 class="fw-bold text-dark mb-0">Forms, Selects & DataLists</h4>
-                <span class="badge bg-success px-3 py-2">Forms & Inputs</span>
-            </div>
-
-            <div class="row g-4">
-                <!-- Form -->
-                <div class="col-md-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="fw-bold mb-0">Form</h5>
-                                <span class="badge bg-success-subtle text-success border border-success">form.simple</span>
-                            </div>
-                            <p class="text-muted small flex-grow-1">
-                                Complete data entry form with card container, header title, dynamically generated field inputs from columns schema, reset, and submit buttons.
-                            </p>
-                            <a href="./form/" class="btn btn-outline-success w-100 mt-3">Open Form &rarr;</a>
+        <!-- 4 CLEAN ARCHITECTURAL TIERS -->
+        <div class="row g-4">
+            <!-- 1. DIRECT -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 rounded-4 category-card border-top border-success border-4">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="fs-4">🟢</span>
+                            <span class="badge bg-success-subtle text-success border border-success px-2 py-1">Direct</span>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Select -->
-                <div class="col-md-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="fw-bold mb-0">Select</h5>
-                                <span class="badge bg-primary-subtle text-primary border border-primary">select.simple</span>
-                            </div>
-                            <p class="text-muted small flex-grow-1">
-                                Dynamic <code>&lt;select&gt;</code> dropdown elements populated with option items via <code>columnOnRow</code> transformation.
-                            </p>
-                            <a href="./select/" class="btn btn-outline-primary w-100 mt-3">Open Select &rarr;</a>
-                        </div>
-                    </div>
-                </div>
+                        <h4 class="fw-bold text-dark mb-2">Direct</h4>
+                        <p class="text-muted small flex-grow-1">
+                            Primitive leaf input elements rendered directly from data collections.
+                        </p>
 
-                <!-- DataList -->
-                <div class="col-md-4">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="fw-bold mb-0">DataList</h5>
-                                <span class="badge bg-info-subtle text-info border border-info">dataList.simple</span>
+                        <div class="mb-4">
+                            <div class="small fw-semibold text-secondary text-uppercase mb-2" style="font-size: 0.7rem;">Controls Inside</div>
+                            <div class="d-flex flex-wrap gap-1">
+                                <span class="tag-pill bg-light border text-secondary">select</span>
+                                <span class="tag-pill bg-light border text-secondary">dataList</span>
                             </div>
-                            <p class="text-muted small flex-grow-1">
-                                Autocomplete <code>&lt;datalist&gt;</code> controls providing live suggestions for text input fields without external libraries.
-                            </p>
-                            <a href="./dataList/" class="btn btn-outline-info w-100 mt-3">Open DataList &rarr;</a>
                         </div>
+
+                        <a href="./direct/" class="btn btn-outline-success w-100 py-2 fw-semibold">
+                            Open Direct &rarr;
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 2. COMPONENTS SECTION -->
-        <div class="mb-5">
-            <div class="d-flex justify-content-between align-items-center section-header">
-                <h4 class="fw-bold text-dark mb-0">Components Catalog (Accordion, Cards, Lists, Menus)</h4>
-                <span class="badge bg-primary px-3 py-2">NEW in v19</span>
+            <!-- 2. CONTAINERS -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 rounded-4 category-card border-top border-primary border-4">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="fs-4">🔵</span>
+                            <span class="badge bg-primary-subtle text-primary border border-primary px-2 py-1">Containers</span>
+                        </div>
+
+                        <h4 class="fw-bold text-dark mb-2">Containers</h4>
+                        <p class="text-muted small flex-grow-1">
+                            Structured functional containers and layout building blocks.
+                        </p>
+
+                        <div class="mb-4">
+                            <div class="small fw-semibold text-secondary text-uppercase mb-2" style="font-size: 0.7rem;">Containers Inside</div>
+                            <div class="d-flex flex-wrap gap-1">
+                                <span class="tag-pill bg-light border text-secondary">table (4)</span>
+                                <span class="tag-pill bg-light border text-secondary">form</span>
+                                <span class="tag-pill bg-light border text-secondary">accordion</span>
+                                <span class="tag-pill bg-light border text-secondary">card</span>
+                                <span class="tag-pill bg-light border text-secondary">list</span>
+                                <span class="tag-pill bg-light border text-secondary">menu</span>
+                            </div>
+                        </div>
+
+                        <a href="./containers/" class="btn btn-outline-primary w-100 py-2 fw-semibold">
+                            Open Containers &rarr;
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="row g-4">
-                <!-- Accordion -->
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="fw-bold mb-0">Accordion</h5>
-                                <span class="badge bg-primary-subtle text-primary border border-primary">accordion.simple</span>
-                            </div>
-                            <p class="text-muted small flex-grow-1">
-                                Interactive collapsible content panels. Supports multi-item looping, collapse states, and clean Bootstrap 5 collapse styling.
-                            </p>
-                            <a href="./accordion/" class="btn btn-outline-primary w-100 mt-3">Open Accordion &rarr;</a>
+            <!-- 3. COMPOSE -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 rounded-4 category-card border-top border-4" style="border-top-color: #a855f7 !important;">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="fs-4">🟣</span>
+                            <span class="badge px-2 py-1" style="background:#f3e8ff; color:#7e22ce; border: 1px solid #d8b4fe;">Compose</span>
                         </div>
+
+                        <h4 class="fw-bold text-dark mb-2">Compose</h4>
+                        <p class="text-muted small flex-grow-1">
+                            Multi-component layouts assembling Direct controls and Containers.
+                        </p>
+
+                        <div class="mb-4">
+                            <div class="small fw-semibold text-secondary text-uppercase mb-2" style="font-size: 0.7rem;">Showcases Inside</div>
+                            <div class="d-flex flex-wrap gap-1">
+                                <span class="tag-pill bg-light border text-secondary">formWithControls</span>
+                                <span class="tag-pill bg-light border text-secondary">dashboardWithTable</span>
+                            </div>
+                        </div>
+
+                        <a href="./compose/" class="btn btn-outline-secondary w-100 py-2 fw-semibold" style="color: #7e22ce; border-color: #c084fc;">
+                            Open Compose &rarr;
+                        </a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Cards -->
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="fw-bold mb-0">Cards Showcase</h5>
-                                <span class="badge bg-info-subtle text-info border border-info">card.*</span>
-                            </div>
-                            <p class="text-muted small flex-grow-1">
-                                Structural content containers featuring <code>card.simple</code>, <code>card.withHeader</code>, and <code>card.withFooter</code>.
-                            </p>
-                            <a href="./card/" class="btn btn-outline-info w-100 mt-3">Open Cards &rarr;</a>
+            <!-- 4. COMPOSITE -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 shadow-sm border-0 rounded-4 category-card border-top border-4" style="border-top-color: #ea580c !important;">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="fs-4">🟠</span>
+                            <span class="badge px-2 py-1" style="background:#fff7ed; color:#c2410c; border: 1px solid #ffedd5;">Composite</span>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Lists -->
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="fw-bold mb-0">Lists</h5>
-                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning">list.*</span>
-                            </div>
-                            <p class="text-muted small flex-grow-1">
-                                Structured lists including Bootstrap <code>list.group</code> with custom notification badges and <code>list.ordered</code> numbered items.
-                            </p>
-                            <a href="./list/" class="btn btn-outline-warning w-100 mt-3">Open Lists &rarr;</a>
-                        </div>
-                    </div>
-                </div>
+                        <h4 class="fw-bold text-dark mb-2">Composite</h4>
+                        <p class="text-muted small flex-grow-1">
+                            Interactive master-detail workflows: Table row click populates Form with autocomplete DataList.
+                        </p>
 
-                <!-- Menus & Menu Cards -->
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="fw-bold mb-0">Menus & Menu Cards</h5>
-                                <span class="badge bg-danger-subtle text-danger border border-danger">menu.*</span>
+                        <div class="mb-4">
+                            <div class="small fw-semibold text-secondary text-uppercase mb-2" style="font-size: 0.7rem;">Workflow Inside</div>
+                            <div class="d-flex flex-wrap gap-1">
+                                <span class="tag-pill bg-light border text-secondary">Table + Form + DataList</span>
+                                <span class="tag-pill bg-light border text-secondary">Live Edit Sync</span>
                             </div>
-                            <p class="text-muted small flex-grow-1">
-                                Navigation components featuring vertical navigation (<code>menu.simple</code>) and responsive interactive dashboard cards (<code>menu.cards</code>).
-                            </p>
-                            <a href="./menu/" class="btn btn-outline-danger w-100 mt-3">Open Menus &rarr;</a>
                         </div>
+
+                        <a href="./composite/" class="btn btn-outline-warning w-100 py-2 fw-semibold" style="color: #c2410c; border-color: #fdba74;">
+                            Open Composite &rarr;
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 3. TABLE SECTION -->
-        <div class="mb-5">
-            <div class="d-flex justify-content-between align-items-center section-header">
-                <h4 class="fw-bold text-dark mb-0">Table Variants & Options</h4>
-                <span class="badge bg-success-subtle text-success border border-success px-3 py-2">table.*</span>
-            </div>
-
-            <div class="row g-4">
-                <!-- 1. headerOnly -->
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="fw-bold mb-0">1. Header Only</h5>
-                                <span class="badge bg-primary-subtle text-primary border border-primary">table.headerOnly</span>
-                            </div>
-                            <p class="text-muted small flex-grow-1">
-                                Renders colgroup and header row. Supports search toolbar and header serial cell (#).
-                            </p>
-                            <a href="./headerOnly/" class="btn btn-outline-primary w-100 mt-3">Open Header Only &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. simple -->
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="fw-bold mb-0">2. Simple Table</h5>
-                                <span class="badge bg-success-subtle text-success border border-success">table.simple</span>
-                            </div>
-                            <p class="text-muted small flex-grow-1">
-                                Standard data table with colgroup, header, and populated body rows. Supports full search toolbar, unified serial numbering, and row action buttons.
-                            </p>
-                            <a href="./simple/" class="btn btn-outline-success w-100 mt-3">Open Simple Table &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. withFooter -->
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="fw-bold mb-0">3. With Footer</h5>
-                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning">table.withFooter</span>
-                            </div>
-                            <p class="text-muted small flex-grow-1">
-                                Complete table containing colgroup, header, body, and tfoot totals row. Supports full search, serial, and action button options.
-                            </p>
-                            <a href="./withFooter/" class="btn btn-outline-warning w-100 mt-3">Open With Footer &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. bodyOnly -->
-                <div class="col-md-6">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body p-4 d-flex flex-column">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="fw-bold mb-0">4. Body Only</h5>
-                                <span class="badge bg-secondary-subtle text-secondary border border-secondary">table.bodyOnly</span>
-                            </div>
-                            <p class="text-muted small flex-grow-1">
-                                Renders tbody rows only. Dedicated to partial DOM updates and infinite scroll appends. Supports row serial numbering.
-                            </p>
-                            <a href="./bodyOnly/" class="btn btn-outline-secondary w-100 mt-3">Open Body Only &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="text-center mt-5 text-muted small">
+            Powered by <code>spec-repo</code> and <code>json-renderers-run-instructions</code>
         </div>
-
     </div>
 </body>
 
