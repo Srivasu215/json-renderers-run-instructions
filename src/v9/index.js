@@ -164,11 +164,11 @@ const startFunc = ({
     options,
     showLog = false
 } = {}) => {
-    const formBaseKey = definitions[instructionMainKey][instructionSubKey].baseFromSpec;
+    const baseKey = definitions[instructionMainKey][instructionSubKey].baseFromSpec;
     const instructionsToRun = definitions[instructionMainKey][instructionSubKey].instructions;
     const optionDefs = definitions[instructionMainKey][instructionSubKey].options;
 
-    const base = structuredClone(spec[formBaseKey]);
+    const base = structuredClone(spec[baseKey]);
 
     const context = { base, data };
 
@@ -186,8 +186,6 @@ const startFunc = ({
 
         executeInstruction({ instruction, context, spec, showLog });
     });
-
-    console.log("optionDefs: ", optionDefs);
 
     runOptions({ base: context?.base, options, optionDefs, showLog });
 

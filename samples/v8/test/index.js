@@ -1,7 +1,7 @@
 import columns from "./columns.json" with { type: "json" };
 import data from "./data.json" with { type: "json" };
 
-import runInstruction from "../../../docs/dist/v8/min.js";
+import runInstruction from "../../../docs/dist/v9/min.js";
 
 const start = () => {
     try {
@@ -9,7 +9,10 @@ const start = () => {
         const formSpec = runInstruction({
             instructionMainKey: "table",
             instructionSubKey: "simple",
-            data: { columns, data }
+            data: { columns, data },
+            options: {
+                showSearch: true
+            }
         });
 
         console.log("Form JSON spec built successfully:", formSpec);
