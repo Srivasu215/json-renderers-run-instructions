@@ -1,4 +1,6 @@
-import { executeStep } from "json-renderers-run-instructions-steps";
+import { spec, instructions } from "spec-repo";
+import writePath from "json-write-path";
+import { query } from "jsonpathly";
 
 const isObject = value => value !== null && typeof value === "object" && !Array.isArray(value);
 
@@ -10,14 +12,28 @@ const getFeatureOptions = (options, featureKey) => {
     return null;
 };
 
+const applyOption = (instructionKey, base) => {
+    const list = instructions[instructionKey];
+    if (!list) return;
+
+    for (const step of list) {
+        if (step.skipIf && query(base, step.skipIf, { returnArray: true }).length > 0) continue;
+        const template = spec[step.templateKey];
+        try {
+            writePath({ base }, step.destinationPath, template);
+        } catch {
+            // Optional target node not in base (e.g. footer on table without footer)
+        }
+    }
+};
+
 /**
- * Task 2: Applies key-value feature options (search, serial, actions) to base with data.
+ * Task 2: Applies key-value feature options (search, serial, actions) to base.
  */
 const runOptions = ({
     options = {},
     optionDefs = {},
     base,
-    data,
     showLog = false
 } = {}) => {
     if (!base || !isObject(options) || !isObject(optionDefs)) {
@@ -39,18 +55,18 @@ const runOptions = ({
         );
         if (!hasActiveSwitch) continue;
 
-        // 1. Run initialize instruction if present (e.g. "searchFrame")
+        // 1. Run initialize option if present (e.g. "searchFrame")
         if (featureSwitches.initialize) {
-            executeStep(featureSwitches.initialize, { base, data }, showLog);
+            applyOption(featureSwitches.initialize, base);
         }
 
-        // 2. Run enabled switch instructions (e.g. "searchLabel", "searchInput")
+        // 2. Run enabled switch options (e.g. "searchLabel", "searchInput")
         for (const [switchKey, instructionKey] of Object.entries(featureSwitches)) {
             if (switchKey === "initialize") continue;
 
             const isEnabled = isBool || userFeature[switchKey] === true;
             if (isEnabled) {
-                executeStep(instructionKey, { base, data }, showLog);
+                applyOption(instructionKey, base);
             }
         }
     }
