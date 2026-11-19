@@ -4687,24 +4687,24 @@ var o = {
 	definitions: o
 });
 // ../json-renderers-run-instructions-steps/node_modules/jsonpathly/dist/index.mjs
-var f = Object.defineProperty, p = Object.getOwnPropertySymbols, m = Object.prototype.hasOwnProperty, ee = Object.prototype.propertyIsEnumerable, h = Math.pow, g = (e, t, n) => t in e ? f(e, t, {
+var f = Object.defineProperty, p = Object.getOwnPropertySymbols, m = Object.prototype.hasOwnProperty, ee = Object.prototype.propertyIsEnumerable, h = Math.pow, te = (e, t, n) => t in e ? f(e, t, {
 	enumerable: !0,
 	configurable: !0,
 	writable: !0,
 	value: n
-}) : e[t] = n, te = (e, t) => {
-	for (var n in t ||= {}) m.call(t, n) && g(e, n, t[n]);
-	if (p) for (var n of p(t)) ee.call(t, n) && g(e, n, t[n]);
+}) : e[t] = n, ne = (e, t) => {
+	for (var n in t ||= {}) m.call(t, n) && te(e, n, t[n]);
+	if (p) for (var n of p(t)) ee.call(t, n) && te(e, n, t[n]);
 	return e;
-}, _ = class extends Error {
+}, g = class extends Error {
 	constructor(e, t, n) {
 		super(n), this.name = "JSONPathSyntaxError", this.line = e, this.charPositionInLine = t, this.msg = n;
 	}
-}, v = class extends Error {
+}, _ = class extends Error {
 	constructor() {
 		super(...arguments), this.name = "JSONPathLimitError";
 	}
-}, y = () => void 0, b = (e, t, n, r) => {
+}, v = () => void 0, y = (e, t, n, r) => {
 	if (r(), typeof e == "string" && typeof t == "string" && e.length === t.length && r(e.length), e === t) return !0;
 	if (e === null || t === null || e === void 0 || t === void 0 || typeof e != typeof t || Array.isArray(e) !== Array.isArray(t)) return !1;
 	if (Array.isArray(e) && Array.isArray(t)) {
@@ -4728,26 +4728,26 @@ var f = Object.defineProperty, p = Object.getOwnPropertySymbols, m = Object.prot
 		}), !0);
 	}
 	return !1;
-}, ne = (e, t, n = y) => {
+}, b = (e, t, n = v) => {
 	let r = [];
-	if (!b(e, t, r, n)) return !1;
+	if (!y(e, t, r, n)) return !1;
 	for (; r.length > 0;) {
 		let e = r[r.length - 1];
 		if (e.i >= e.length) r.pop();
 		else if (e.keys === null) {
 			let t = e.i++;
-			if (!b(S(e.x, t), S(e.y, t), r, n)) return !1;
+			if (!y(S(e.x, t), S(e.y, t), r, n)) return !1;
 		} else {
 			let t = e.i++, i = e.keys[t], a = e.x, o = e.y;
 			if (n(i.length), !x(o, i) || !x(a, i)) return !1;
 			let s = a[i];
-			if (!x(o, i) || !b(s, o[i], r, n)) return !1;
+			if (!x(o, i) || !y(s, o[i], r, n)) return !1;
 		}
 	}
 	return !0;
 }, x = (e, t) => Object.prototype.hasOwnProperty.call(e, t), S = (e, t) => x(e, t) ? e[t] : void 0, re = 16383, ie = 1e3, C = (e) => {
 	let t = Object.keys(e);
-	for (let e of t) if (e.length > ie) throw new v(`Member name too long (maximum ${ie} characters)`);
+	for (let e of t) if (e.length > ie) throw new _(`Member name too long (maximum ${ie} characters)`);
 	return t;
 }, w = (e) => {
 	let t = e.length;
@@ -4847,7 +4847,7 @@ var ue = class extends SyntaxError {
 };
 function de(e, t) {
 	t = t === void 0 ? {} : t;
-	let n = {}, r = t.grammarSource, i = { jsonpath: Rr }, a = Rr, o = "length", s = "count", c = "match", l = "search", u = "value", d = "subsetof", f = "anyof", p = "noneof", m = "sizeof", ee = "size", h = "empty", g = "true", te = "false", _ = "null", v = /^[,\]]/, y = /^[+\-]/, b = /^[*\/]/, ne = /^[a-zA-Z_]/, x = /^[\x80-\uFFFF_]/, S = /^[a-zA-Z0-9_]/, re = /^[0-9@$\-]/, ie = /^[^\/\\]/, C = /^[gimsuy]/, w = /^[a-zA-Z_\x80-\uD7FF\uE000-\uFFFF]/, ae = /^[\uD800-\uDBFF]/, T = /^[\uDC00-\uDFFF]/, E = /^[0-9]/, D = /^[1-9]/, O = /^[eE]/, k = /^["\\]/, oe = /^['\\]/, A = /^[ -\uD7FF\uE000-\uFFFF]/, de = /^[dD]/, fe = /^[89abAB]/, pe = /^[c-fC-F]/, j = /^[0-9a-fA-F]/, me = /^[ \t\n\r]/, he = J([",", "]"], !1, !1, !1), ge = q("length", !1), _e = q("count", !1), ve = q("match", !1), ye = q("search", !1), be = q("value", !1), xe = J(["+", "-"], !1, !1, !1), Se = J(["*", "/"], !1, !1, !1), Ce = Nr("string"), we = J([
+	let n = {}, r = t.grammarSource, i = { jsonpath: Rr }, a = Rr, o = "length", s = "count", c = "match", l = "search", u = "value", d = "subsetof", f = "anyof", p = "noneof", m = "sizeof", ee = "size", h = "empty", te = "true", ne = "false", g = "null", _ = /^[,\]]/, v = /^[+\-]/, y = /^[*\/]/, b = /^[a-zA-Z_]/, x = /^[\x80-\uFFFF_]/, S = /^[a-zA-Z0-9_]/, re = /^[0-9@$\-]/, ie = /^[^\/\\]/, C = /^[gimsuy]/, w = /^[a-zA-Z_\x80-\uD7FF\uE000-\uFFFF]/, ae = /^[\uD800-\uDBFF]/, T = /^[\uDC00-\uDFFF]/, E = /^[0-9]/, D = /^[1-9]/, O = /^[eE]/, k = /^["\\]/, oe = /^['\\]/, A = /^[ -\uD7FF\uE000-\uFFFF]/, de = /^[dD]/, fe = /^[89abAB]/, pe = /^[c-fC-F]/, j = /^[0-9a-fA-F]/, me = /^[ \t\n\r]/, he = J([",", "]"], !1, !1, !1), ge = q("length", !1), _e = q("count", !1), ve = q("match", !1), ye = q("search", !1), be = q("value", !1), xe = J(["+", "-"], !1, !1, !1), Se = J(["*", "/"], !1, !1, !1), Ce = Nr("string"), we = J([
 		["a", "z"],
 		["A", "Z"],
 		"_"
@@ -5088,21 +5088,21 @@ function de(e, t) {
 			subtype: "boolean"
 		};
 	}
-	function V() {
+	function yn() {
 		return {
 			type: "value",
 			value: null,
 			subtype: "null"
 		};
 	}
-	function yn(e, t) {
+	function bn(e, t) {
 		return {
 			type: "functionCall",
 			name: e,
 			args: t || []
 		};
 	}
-	function bn() {
+	function V() {
 		return "length";
 	}
 	function xn() {
@@ -5484,7 +5484,7 @@ function de(e, t) {
 	}
 	function qr() {
 		let t, r, i, a, o, s, c, l, u;
-		return t = H, r = ta(), r === n ? (H = t, t = n) : ($(), i = $i(), i === n ? (H = t, t = n) : ($(), a = Jr(), a === n ? (H = t, t = n) : ($(), o = ea(), o === n ? (H = t, t = n) : (s = H, K++, c = H, l = $(), u = e.charAt(H), v.test(u) ? H++ : (u = n, K === 0 && Y(he)), u === n ? (H = c, c = n) : (l = [l, u], c = l), K--, c === n ? s = n : (H = s, s = void 0), s === n ? (H = t, t = n) : (U = t, t = Kt(a)))))), t === n && (t = H, r = ta(), r === n ? (H = t, t = n) : ($(), i = Jr(), i === n ? (H = t, t = n) : (U = t, t = qt(i)))), t;
+		return t = H, r = ta(), r === n ? (H = t, t = n) : ($(), i = $i(), i === n ? (H = t, t = n) : ($(), a = Jr(), a === n ? (H = t, t = n) : ($(), o = ea(), o === n ? (H = t, t = n) : (s = H, K++, c = H, l = $(), u = e.charAt(H), _.test(u) ? H++ : (u = n, K === 0 && Y(he)), u === n ? (H = c, c = n) : (l = [l, u], c = l), K--, c === n ? s = n : (H = s, s = void 0), s === n ? (H = t, t = n) : (U = t, t = Kt(a)))))), t === n && (t = H, r = ta(), r === n ? (H = t, t = n) : ($(), i = Jr(), i === n ? (H = t, t = n) : (U = t, t = qt(i)))), t;
 	}
 	function Jr() {
 		let e, t, r, i, a, o, s, c, l = H * 91 + 10, u = Er.get(l);
@@ -5544,15 +5544,15 @@ function de(e, t) {
 	}
 	function ei() {
 		let e, t, r, i;
-		return e = H, t = $i(), t === n ? (H = e, e = n) : ($(), r = Jr(), r === n ? (H = e, e = n) : ($(), i = ea(), i === n ? (H = e, e = n) : (U = e, e = gn(r)))), e === n && (e = ti(), e === n && (e = ci(), e === n && (e = H, t = Gi(), t !== n && (U = e, t = _n()), e = t, e === n && (e = H, t = Ki(), t !== n && (U = e, t = vn()), e = t, e === n && (e = H, t = qi(), t !== n && (U = e, t = V()), e = t))))), e;
+		return e = H, t = $i(), t === n ? (H = e, e = n) : ($(), r = Jr(), r === n ? (H = e, e = n) : ($(), i = ea(), i === n ? (H = e, e = n) : (U = e, e = gn(r)))), e === n && (e = ti(), e === n && (e = ci(), e === n && (e = H, t = Gi(), t !== n && (U = e, t = _n()), e = t, e === n && (e = H, t = Ki(), t !== n && (U = e, t = vn()), e = t, e === n && (e = H, t = qi(), t !== n && (U = e, t = yn()), e = t))))), e;
 	}
 	function ti() {
 		let e, t, r, i, a;
-		return e = H, t = ni(), t === n ? (H = e, e = n) : (r = $i(), r === n ? (H = e, e = n) : ($(), i = ri(), i === n && (i = null), $(), a = ea(), a === n ? (H = e, e = n) : (U = e, e = yn(t, i)))), e;
+		return e = H, t = ni(), t === n ? (H = e, e = n) : (r = $i(), r === n ? (H = e, e = n) : ($(), i = ri(), i === n && (i = null), $(), a = ea(), a === n ? (H = e, e = n) : (U = e, e = bn(t, i)))), e;
 	}
 	function ni() {
 		let t, r;
-		return t = H, e.substr(H, 6) === o ? (r = o, H += 6) : (r = n, K === 0 && Y(ge)), r !== n && (U = t, r = bn()), t = r, t === n && (t = H, e.substr(H, 5) === s ? (r = s, H += 5) : (r = n, K === 0 && Y(_e)), r !== n && (U = t, r = xn()), t = r, t === n && (t = H, e.substr(H, 5) === c ? (r = c, H += 5) : (r = n, K === 0 && Y(ve)), r !== n && (U = t, r = Sn()), t = r, t === n && (t = H, e.substr(H, 6) === l ? (r = l, H += 6) : (r = n, K === 0 && Y(ye)), r !== n && (U = t, r = Cn()), t = r, t === n && (t = H, e.substr(H, 5) === u ? (r = u, H += 5) : (r = n, K === 0 && Y(be)), r !== n && (U = t, r = wn()), t = r)))), t;
+		return t = H, e.substr(H, 6) === o ? (r = o, H += 6) : (r = n, K === 0 && Y(ge)), r !== n && (U = t, r = V()), t = r, t === n && (t = H, e.substr(H, 5) === s ? (r = s, H += 5) : (r = n, K === 0 && Y(_e)), r !== n && (U = t, r = xn()), t = r, t === n && (t = H, e.substr(H, 5) === c ? (r = c, H += 5) : (r = n, K === 0 && Y(ve)), r !== n && (U = t, r = Sn()), t = r, t === n && (t = H, e.substr(H, 6) === l ? (r = l, H += 6) : (r = n, K === 0 && Y(ye)), r !== n && (U = t, r = Cn()), t = r, t === n && (t = H, e.substr(H, 5) === u ? (r = u, H += 5) : (r = n, K === 0 && Y(be)), r !== n && (U = t, r = wn()), t = r)))), t;
 	}
 	function ri() {
 		let e, t, r, i, a, o, s, c;
@@ -5580,12 +5580,12 @@ function de(e, t) {
 		let t, r, i, a, o, s, c, l, u = H * 91 + 21, d = Er.get(u);
 		if (d) return H = d.nextPos, d.result;
 		if (t = H, r = oi(), r !== n) {
-			for (i = [], a = H, o = $(), s = e.charAt(H), y.test(s) ? H++ : (s = n, K === 0 && Y(xe)), s === n ? (H = a, a = n) : (c = $(), l = oi(), l === n ? (H = a, a = n) : (o = [
+			for (i = [], a = H, o = $(), s = e.charAt(H), v.test(s) ? H++ : (s = n, K === 0 && Y(xe)), s === n ? (H = a, a = n) : (c = $(), l = oi(), l === n ? (H = a, a = n) : (o = [
 				o,
 				s,
 				c,
 				l
-			], a = o)); a !== n;) i.push(a), a = H, o = $(), s = e.charAt(H), y.test(s) ? H++ : (s = n, K === 0 && Y(xe)), s === n ? (H = a, a = n) : (c = $(), l = oi(), l === n ? (H = a, a = n) : (o = [
+			], a = o)); a !== n;) i.push(a), a = H, o = $(), s = e.charAt(H), v.test(s) ? H++ : (s = n, K === 0 && Y(xe)), s === n ? (H = a, a = n) : (c = $(), l = oi(), l === n ? (H = a, a = n) : (o = [
 				o,
 				s,
 				c,
@@ -5601,12 +5601,12 @@ function de(e, t) {
 	function oi() {
 		let t, r, i, a, o, s, c, l;
 		if (t = H, r = si(), r !== n) {
-			for (i = [], a = H, o = $(), s = e.charAt(H), b.test(s) ? H++ : (s = n, K === 0 && Y(Se)), s === n ? (H = a, a = n) : (c = $(), l = si(), l === n ? (H = a, a = n) : (o = [
+			for (i = [], a = H, o = $(), s = e.charAt(H), y.test(s) ? H++ : (s = n, K === 0 && Y(Se)), s === n ? (H = a, a = n) : (c = $(), l = si(), l === n ? (H = a, a = n) : (o = [
 				o,
 				s,
 				c,
 				l
-			], a = o)); a !== n;) i.push(a), a = H, o = $(), s = e.charAt(H), b.test(s) ? H++ : (s = n, K === 0 && Y(Se)), s === n ? (H = a, a = n) : (c = $(), l = si(), l === n ? (H = a, a = n) : (o = [
+			], a = o)); a !== n;) i.push(a), a = H, o = $(), s = e.charAt(H), y.test(s) ? H++ : (s = n, K === 0 && Y(Se)), s === n ? (H = a, a = n) : (c = $(), l = si(), l === n ? (H = a, a = n) : (o = [
 				o,
 				s,
 				c,
@@ -5698,7 +5698,7 @@ function de(e, t) {
 	}
 	function yi() {
 		let t, r, i, a, o, s;
-		if (t = H, r = H, i = H, a = e.charAt(H), ne.test(a) ? H++ : (a = n, K === 0 && Y(we)), a !== n) {
+		if (t = H, r = H, i = H, a = e.charAt(H), b.test(a) ? H++ : (a = n, K === 0 && Y(we)), a !== n) {
 			for (o = [], s = bi(); s !== n;) o.push(s), s = bi();
 			a = [a, o], i = a;
 		} else H = i, i = n;
@@ -5811,15 +5811,15 @@ function de(e, t) {
 	}
 	function Gi() {
 		let t, r, i, a;
-		return t = H, e.substr(H, 4) === g ? (r = g, H += 4) : (r = n, K === 0 && Y(Ze)), r === n ? (H = t, t = n) : (i = H, K++, a = Q(), K--, a === n ? i = void 0 : (H = i, i = n), i === n ? (H = t, t = n) : (r = [r, i], t = r)), t;
+		return t = H, e.substr(H, 4) === te ? (r = te, H += 4) : (r = n, K === 0 && Y(Ze)), r === n ? (H = t, t = n) : (i = H, K++, a = Q(), K--, a === n ? i = void 0 : (H = i, i = n), i === n ? (H = t, t = n) : (r = [r, i], t = r)), t;
 	}
 	function Ki() {
 		let t, r, i, a;
-		return t = H, e.substr(H, 5) === te ? (r = te, H += 5) : (r = n, K === 0 && Y(Qe)), r === n ? (H = t, t = n) : (i = H, K++, a = Q(), K--, a === n ? i = void 0 : (H = i, i = n), i === n ? (H = t, t = n) : (r = [r, i], t = r)), t;
+		return t = H, e.substr(H, 5) === ne ? (r = ne, H += 5) : (r = n, K === 0 && Y(Qe)), r === n ? (H = t, t = n) : (i = H, K++, a = Q(), K--, a === n ? i = void 0 : (H = i, i = n), i === n ? (H = t, t = n) : (r = [r, i], t = r)), t;
 	}
 	function qi() {
 		let t, r, i, a;
-		return t = H, e.substr(H, 4) === _ ? (r = _, H += 4) : (r = n, K === 0 && Y($e)), r === n ? (H = t, t = n) : (i = H, K++, a = Q(), K--, a === n ? i = void 0 : (H = i, i = n), i === n ? (H = t, t = n) : (r = [r, i], t = r)), t;
+		return t = H, e.substr(H, 4) === g ? (r = g, H += 4) : (r = n, K === 0 && Y($e)), r === n ? (H = t, t = n) : (i = H, K++, a = Q(), K--, a === n ? i = void 0 : (H = i, i = n), i === n ? (H = t, t = n) : (r = [r, i], t = r)), t;
 	}
 	function Ji() {
 		let t;
@@ -5925,7 +5925,7 @@ function de(e, t) {
 	function ua() {
 		let t, r, i, a, o;
 		if (t = H, r = e.charAt(H), O.test(r) ? H++ : (r = n, K === 0 && Y(yt)), r !== n) {
-			if (i = e.charAt(H), y.test(i) ? H++ : (i = n, K === 0 && Y(xe)), i === n && (i = null), a = [], o = e.charAt(H), E.test(o) ? H++ : (o = n, K === 0 && Y(I)), o !== n) for (; o !== n;) a.push(o), o = e.charAt(H), E.test(o) ? H++ : (o = n, K === 0 && Y(I));
+			if (i = e.charAt(H), v.test(i) ? H++ : (i = n, K === 0 && Y(xe)), i === n && (i = null), a = [], o = e.charAt(H), E.test(o) ? H++ : (o = n, K === 0 && Y(I)), o !== n) for (; o !== n;) a.push(o), o = e.charAt(H), E.test(o) ? H++ : (o = n, K === 0 && Y(I));
 			else a = n;
 			a === n ? (H = t, t = n) : (r = [
 				r,
@@ -6046,7 +6046,7 @@ var fe = /* @__PURE__ */ new Set([
 		logical: !0
 	}
 }, j = (e) => {
-	throw new _(1, 1, e);
+	throw new g(1, 1, e);
 }, me = (e) => e.type === "root" || e.type === "current", he = (e) => {
 	for (let t = e.next; t; t = t.next) {
 		let e = t.value;
@@ -6132,11 +6132,11 @@ function _e(e) {
 	try {
 		t = de(e);
 	} catch (e) {
-		if (ae(e)) throw new _(1, 1, "Expression is nested too deeply");
-		if (e instanceof RangeError) throw new _(1, 1, "Expression is too large to parse");
+		if (ae(e)) throw new g(1, 1, "Expression is nested too deeply");
+		if (e instanceof RangeError) throw new g(1, 1, "Expression is too large to parse");
 		if (e && typeof e == "object" && "location" in e && "message" in e) {
 			let t = e;
-			throw new _(t.location.start.line, t.location.start.column, t.message);
+			throw new g(t.location.start.line, t.location.start.column, t.message);
 		}
 		throw e;
 	}
@@ -6385,7 +6385,7 @@ var ve = /* @__PURE__ */ new Set([
 			if (e[t + 1] === "?") {
 				let r = Ke.exec(e.slice(t, t + 12));
 				if (!r) throw new M("lookaround or named group");
-				let i = te({}, n);
+				let i = ne({}, n);
 				for (let e of r[1]) i[e] = !0;
 				for (let e of r[2] ?? "") i[e] = !1;
 				this.mods = i, this.i = t + r[0].length;
@@ -6528,19 +6528,19 @@ var ve = /* @__PURE__ */ new Set([
 		return null;
 	}
 }, Ze = (e, t, n, r) => {
-	let { op: i, x: a, y: o, atoms: s, unicode: c, sticky: l } = e, u = n.regexWork ?? n, { clist: d, nlist: f } = r, p = 0, m = 0, { onList: ee, stack: h, atomGen: g, atomHit: te } = r, _ = r.gen, v = r.step;
-	r.gen = _ + t.length + 2, r.step = v + t.length + 2;
-	let y = 0, b = !1, ne = (e, n, r) => {
+	let { op: i, x: a, y: o, atoms: s, unicode: c, sticky: l } = e, u = n.regexWork ?? n, { clist: d, nlist: f } = r, p = 0, m = 0, { onList: ee, stack: h, atomGen: te, atomHit: ne } = r, g = r.gen, _ = r.step;
+	r.gen = g + t.length + 2, r.step = _ + t.length + 2;
+	let v = 0, y = !1, b = (e, n, r) => {
 		let s = 0;
 		h[s++] = r;
 		let c = 0;
 		for (; s > 0;) {
 			let r = h[--s];
-			if (ee[r] !== _) switch (ee[r] = _, ++c === 64 && (u(c), c = 0), i[r]) {
+			if (ee[r] !== g) switch (ee[r] = g, ++c === 64 && (u(c), c = 0), i[r]) {
 				case Fe:
 					e[n++] = r;
 					break;
-				case Be: return u(c), b = !0, n;
+				case Be: return u(c), y = !0, n;
 				case Le:
 					h[s++] = a[r];
 					break;
@@ -6548,28 +6548,28 @@ var ve = /* @__PURE__ */ new Set([
 					h[s++] = o[r], h[s++] = a[r];
 					break;
 				case Re:
-					(y === 0 || a[r] === 1 && qe(t.charCodeAt(y - 1))) && (h[s++] = r + 1);
+					(v === 0 || a[r] === 1 && qe(t.charCodeAt(v - 1))) && (h[s++] = r + 1);
 					break;
-				case ze: (y === t.length || a[r] === 1 && qe(t.charCodeAt(y))) && (h[s++] = r + 1);
+				case ze: (v === t.length || a[r] === 1 && qe(t.charCodeAt(v))) && (h[s++] = r + 1);
 			}
 		}
 		return u(c), n;
 	};
-	if (_++, p = ne(d, 0, 0), b) return !0;
-	for (; y < t.length;) {
+	if (g++, p = b(d, 0, 0), y) return !0;
+	for (; v < t.length;) {
 		if (p === 0 && l) return !1;
-		let e = (c ? t.codePointAt(y) : t.charCodeAt(y)) > 65535 ? 2 : 1, n = t.slice(y, y + e), r = v + y + 1;
-		_++, m = 0, y += e;
+		let e = (c ? t.codePointAt(v) : t.charCodeAt(v)) > 65535 ? 2 : 1, n = t.slice(v, v + e), r = _ + v + 1;
+		g++, m = 0, v += e;
 		for (let e = 0; e < p; e++) {
 			let t = d[e], i = a[t];
-			if (g[i] !== r) {
-				g[i] = r;
+			if (te[i] !== r) {
+				te[i] = r;
 				let e = s[i];
-				te[i] = (e.literal === void 0 ? e.re.test(n) : e.literal === n) ? 1 : 0;
+				ne[i] = (e.literal === void 0 ? e.re.test(n) : e.literal === n) ? 1 : 0;
 			}
-			if (te[i] === 1 && (m = ne(f, m, t + 1), b)) return !0;
+			if (ne[i] === 1 && (m = b(f, m, t + 1), y)) return !0;
 		}
-		if (!l && (m = ne(f, m, 0), b)) return !0;
+		if (!l && (m = b(f, m, 0), y)) return !0;
 		let i = d;
 		d = f, f = i, p = m;
 	}
@@ -6675,14 +6675,14 @@ var ve = /* @__PURE__ */ new Set([
 		let { nodes: t } = e[0];
 		return t.length === 1 ? t[0] : void 0;
 	}
-}, ft = (e, t, n = y) => e === void 0 && t === void 0 || ne(e, t, n), pt = (e, t, n = y) => !ne(e, t, n), mt = (e) => e >= 55296 && e <= 57343 ? e + 8192 : e >= 57344 ? e - 2048 : e, I = (e, t) => {
+}, ft = (e, t, n = v) => e === void 0 && t === void 0 || b(e, t, n), pt = (e, t, n = v) => !b(e, t, n), mt = (e) => e >= 55296 && e <= 57343 ? e + 8192 : e >= 57344 ? e - 2048 : e, I = (e, t) => {
 	let n = Math.min(e.length, t.length);
 	for (let r = 0; r < n; r++) {
 		let n = e.charCodeAt(r), i = t.charCodeAt(r);
 		if (n !== i) return mt(n) - mt(i);
 	}
 	return e.length - t.length;
-}, ht = (e, t, n = y) => O(e) && O(t) ? e < t : k(e) && k(t) ? (n(Math.min(e.length, t.length)), I(e, t) < 0) : !1, gt = (e, t, n = y) => ht(e, t, n) || ft(e, t, n), _t = (e, t, n = y) => O(e) && O(t) ? e > t : k(e) && k(t) ? (n(Math.min(e.length, t.length)), I(e, t) > 0) : !1, vt = (e, t, n = y) => _t(e, t, n) || ft(e, t, n), yt = (e, t) => typeof e == "string" && typeof t == "string" && e.length === t.length ? e.length : 0, bt = (e, t, n) => {
+}, ht = (e, t, n = v) => O(e) && O(t) ? e < t : k(e) && k(t) ? (n(Math.min(e.length, t.length)), I(e, t) < 0) : !1, gt = (e, t, n = v) => ht(e, t, n) || ft(e, t, n), _t = (e, t, n = v) => O(e) && O(t) ? e > t : k(e) && k(t) ? (n(Math.min(e.length, t.length)), I(e, t) > 0) : !1, vt = (e, t, n = v) => _t(e, t, n) || ft(e, t, n), yt = (e, t) => typeof e == "string" && typeof t == "string" && e.length === t.length ? e.length : 0, bt = (e, t, n) => {
 	let r = w(e);
 	for (let i = 0; i < r; i++) {
 		let r = S(e, i);
@@ -6718,26 +6718,26 @@ var ve = /* @__PURE__ */ new Set([
 	le: gt,
 	gt: _t,
 	ge: vt,
-	in: (e, t, n = y) => T(t) ? bt(t, e, n) !== -1 : !1,
-	nin: (e, t, n = y) => T(t) ? bt(t, e, n) === -1 : !1,
-	subsetof: (e, t, n = y, r) => {
+	in: (e, t, n = v) => T(t) ? bt(t, e, n) !== -1 : !1,
+	nin: (e, t, n = v) => T(t) ? bt(t, e, n) === -1 : !1,
+	subsetof: (e, t, n = v, r) => {
 		if (!T(e) || !T(t)) return !1;
 		let i = Ct(t, n, r);
 		return !Tt(e, (e) => !wt(i, e, n), n);
 	},
-	anyof: (e, t, n = y, r) => {
+	anyof: (e, t, n = v, r) => {
 		if (!T(e) || !T(t)) return !1;
 		let i = Ct(t, n, r);
 		return Tt(e, (e) => wt(i, e, n), n);
 	},
-	noneof: (e, t, n = y, r) => {
+	noneof: (e, t, n = v, r) => {
 		if (!T(e) || !T(t)) return !1;
 		let i = Ct(t, n, r);
 		return !Tt(e, (e) => wt(i, e, n), n);
 	},
 	sizeof: (e, t) => !T(e) && !k(e) || !T(t) && !k(t) ? !1 : (T(e) ? w(e) : e.length) === (T(t) ? w(t) : t.length),
 	size: (e, t) => !T(e) && !k(e) || !O(t) ? !1 : (T(e) ? w(e) : e.length) === t
-}, Dt = (e) => !T(e) && !k(e) ? !1 : (T(e) ? w(e) : e.length) === 0, Ot = (e, t, n, r = y, i) => !k(e) || !k(t) ? !1 : F(i !== void 0 && r.regexSites?.has(i) === !0 ? "" : t.slice(1, -1), n, e, !1, r, i), kt = (e) => e.replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/\x08/g, "\\b").replace(/\f/g, "\\f").replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t").replace(/[\x00-\x07\x0b\x0e-\x1f]/g, (e) => "\\u00" + e.charCodeAt(0).toString(16).padStart(2, "0")), L = (e, t) => e.concat(`[${t}]`), R = (e, t) => e < 0 ? t + e : e, At = (e, t) => {
+}, Dt = (e) => !T(e) && !k(e) ? !1 : (T(e) ? w(e) : e.length) === 0, Ot = (e, t, n, r = v, i) => !k(e) || !k(t) ? !1 : F(i !== void 0 && r.regexSites?.has(i) === !0 ? "" : t.slice(1, -1), n, e, !1, r, i), kt = (e) => e.replace(/\\/g, "\\\\").replace(/'/g, "\\'").replace(/\x08/g, "\\b").replace(/\f/g, "\\f").replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t").replace(/[\x00-\x07\x0b\x0e-\x1f]/g, (e) => "\\u00" + e.charCodeAt(0).toString(16).padStart(2, "0")), L = (e, t) => e.concat(`[${t}]`), R = (e, t) => e < 0 ? t + e : e, At = (e, t) => {
 	let n = w(e), r = R(t, n);
 	return r >= 0 && r < n ? {
 		exists: !0,
@@ -6824,7 +6824,7 @@ var ve = /* @__PURE__ */ new Set([
 					for (; !e.done;) if (e.advance(Math.max(Ft, Math.ceil((this.retained - this.retainedLimit) / Pt))), this.raiseLimits(e), this.retained <= this.retainedLimit) return;
 					if (this.raiseLimits(e), this.retained <= this.retainedLimit) return;
 				}
-				throw new v(`Query retains more than ${this.retainedLimit} nodes`);
+				throw new _(`Query retains more than ${this.retainedLimit} nodes`);
 			}
 		}, this.raiseLimits = (e) => {
 			let t = Math.min(this.regexSteps, this.largestRegexProgram * e.stringPositions);
@@ -6836,7 +6836,7 @@ var ve = /* @__PURE__ */ new Set([
 					for (; !e.done;) if (e.advance(Math.max(Ft, Math.ceil((this.steps - this.stepLimit) / Mt))), this.raiseLimits(e), this.steps <= this.stepLimit) return;
 					if (this.raiseLimits(e), this.steps <= this.stepLimit) return;
 				}
-				throw new v(`Query exceeded ${this.stepLimit} evaluation steps`);
+				throw new _(`Query exceeded ${this.stepLimit} evaluation steps`);
 			}
 		}, {
 			regexProgram: (e) => {
@@ -7208,7 +7208,7 @@ var ve = /* @__PURE__ */ new Set([
 			try {
 				return this.handleSubscript(this.rootPayload, e.next);
 			} catch (e) {
-				throw ae(e) ? new v("Query is nested too deeply") : E(e) ? new v("Query result is too large") : e;
+				throw ae(e) ? new _("Query is nested too deeply") : E(e) ? new _("Query result is too large") : e;
 			}
 		}, this.rootPayload = {
 			value: e,
@@ -7369,7 +7369,9 @@ var rn = (e, t) => {
 		if (!t.filePath || t.filePath.length === 0) {
 			let r = e[t.fileName];
 			Array.isArray(r) ? r.push(...Array.isArray(n) ? n : [n]) : e[t.fileName] = n;
-		} else on(e, t, n, r);
+		} else try {
+			on(e, t, n, r);
+		} catch {}
 	}
 }, ln = (e, t) => e.map((e) => ({
 	...e,
@@ -7410,91 +7412,88 @@ var rn = (e, t) => {
 		...t,
 		rowValue: t[e.columnName] ?? t.value ?? t
 	}))), i.children = a.map((e) => B(e, r)), i;
-}), gn = (e, { base: t, data: n }, r) => {
-	if (!e || e.skipIf && Vt(t, e.skipIf, { returnArray: !0 }).length > 0 || e.destinationPath?.jsonPath && Vt(t, e.destinationPath.jsonPath, { returnArray: !0 }).length === 0) return null;
-	let i = e.type ?? "single", a = {
-		base: t,
-		data: n
-	}, o;
-	if (i === "rowOnColumn" || i === "columnOnRow") {
-		let t = s[e.templateKey.columnKey], r = s[e.templateKey.rowKey], a = n?.columns ?? [], c = n?.data ?? (Array.isArray(n) ? n : n?.rows ?? []);
-		o = i === "rowOnColumn" ? mn({
-			columns: a,
-			data: c,
-			columnSpec: t,
-			rowSpec: r
-		}) : hn({
-			columns: a,
-			rows: c,
-			columnSpec: t,
-			rowSpec: r
+}), gn = (e) => ({
+	columns: e?.columns ?? [],
+	rows: e?.data ?? (Array.isArray(e) ? e : e?.rows ?? [])
+}), _n = {
+	single: (e, t) => {
+		let n = e.templateKey ? s[e.templateKey] : null;
+		return pn(sn(e.sourcePath, t), n, e.func);
+	},
+	rowOnColumn: (e, { data: t }) => {
+		let { columns: n, rows: r } = gn(t);
+		return mn({
+			columns: n,
+			data: r,
+			columnSpec: s[e.templateKey.columnKey],
+			rowSpec: s[e.templateKey.rowKey]
 		});
-	} else {
-		let t = e.templateKey ? s[e.templateKey] : null;
-		o = pn(sn(e.sourcePath, a), t, e.func);
+	},
+	columnOnRow: (e, { data: t }) => {
+		let { columns: n, rows: r } = gn(t);
+		return hn({
+			columns: n,
+			rows: r,
+			columnSpec: s[e.templateKey.columnKey],
+			rowSpec: s[e.templateKey.rowKey]
+		});
 	}
-	return cn(a, e.destinationPath, o, r), o;
-}, _n = (e, { base: t, data: n }, r = !1) => {
+}, vn = (e, t, n) => {
+	if (e.skipIf && Vt(t.base, e.skipIf, { returnArray: !0 }).length > 0) return null;
+	let r = _n[e.type ?? "single"], i = r(e, t);
+	return cn(t, e.destinationPath, i, n), i;
+}, yn = (e, t, n = !1) => {
 	if (!e) return null;
-	if (Array.isArray(e)) return e.map((e) => _n(e, {
-		base: t,
-		data: n
-	}, r));
-	let i = u[e];
-	return i ? Array.isArray(i) ? i.map((e) => gn(e, {
-		base: t,
-		data: n
-	}, r)) : gn(i, {
-		base: t,
-		data: n
-	}, r) : (r && console.warn(`Instruction not found: ${e}`), null);
-}, vn = ({ instructions: e = [], base: t, data: n, showLog: r = !1 } = {}) => (e.forEach((e) => {
-	r && console.log(`[runStep] ${e}`), _n(e, {
+	if (Array.isArray(e)) return e.map((e) => yn(e, t, n));
+	let r = u[e];
+	return r ? Array.isArray(r) ? r.map((e) => vn(e, t, n)) : vn(r, t, n) : (n && console.warn(`Instruction not found: ${e}`), null);
+}, bn = ({ instructions: e = [], base: t, data: n, showLog: r = !1 } = {}) => (e.forEach((e) => {
+	r && console.log(`[runStep] ${e}`), yn(e, {
 		base: t,
 		data: n
 	}, r);
-}), t), V = (e) => typeof e == "object" && !!e && !Array.isArray(e), yn = (e, t) => {
+}), t), V = (e) => typeof e == "object" && !!e && !Array.isArray(e), xn = (e, t) => {
 	if (!V(e)) return null;
 	if (e[t] !== void 0) return e[t];
 	let n = `show${t.charAt(0).toUpperCase()}${t.slice(1)}`;
 	return e[n] === void 0 ? null : e[n];
-}, bn = ({ options: e = {}, optionDefs: t = {}, base: n, data: r, showLog: i = !1 } = {}) => {
+}, Sn = ({ options: e = {}, optionDefs: t = {}, base: n, data: r, showLog: i = !1 } = {}) => {
 	if (!n || !V(e) || !V(t)) return n;
 	for (let [a, o] of Object.entries(t)) {
 		if (!V(o)) continue;
-		let t = yn(e, a);
+		let t = xn(e, a);
 		if (!t) continue;
 		let s = typeof t == "boolean" && t === !0, c = V(t);
 		if ((s || c) && Object.entries(o).some(([e]) => e !== "initialize" && (s || t[e] === !0))) {
-			o.initialize && _n(o.initialize, {
+			o.initialize && yn(o.initialize, {
 				base: n,
 				data: r
 			}, i);
-			for (let [e, a] of Object.entries(o)) e !== "initialize" && (s || t[e] === !0) && _n(a, {
+			for (let [e, a] of Object.entries(o)) e !== "initialize" && (s || t[e] === !0) && yn(a, {
 				base: n,
 				data: r
 			}, i);
 		}
 	}
 	return n;
-}, xn = {
+}, Cn = {
 	name: "json-renderers-run-instructions",
 	version: "1.14.1"
-}, Sn = (e) => {
+}, wn = (e) => {
 	typeof globalThis < "u" && e && (globalThis.ks ??= {}, globalThis.ks.jsonRenderers ??= {}, globalThis.ks.jsonRenderers.runInstructions ??= {}, globalThis.ks.jsonRenderers.runInstructions.render = {
-		meta: xn,
+		meta: Cn,
 		renderFunc: e
 	});
-}, Cn = ({ instructionMainKey: n, instructionSubKey: r, data: i, options: a, showLog: o = !1 } = {}) => {
+}, Tn = ({ instructionMainKey: n, instructionSubKey: r, data: i, options: a, showLog: o = !1 } = {}) => {
 	let s = e[n]?.[r];
 	if (!s) throw Error(`Definition not found: ${n}.${r}`);
 	let c = structuredClone(t[s.baseFromSpec]);
-	return vn({
+	return bn({
 		instructions: s.instructions ?? [],
 		base: c,
 		data: i,
 		showLog: o
-	}), bn({
+	}), Sn({
 		options: a,
 		optionDefs: s.options && typeof s.options == "object" ? s.options : e[n]?.options ?? {},
 		base: c,
@@ -7502,5 +7501,5 @@ var rn = (e, t) => {
 		showLog: o
 	}), c;
 };
-Sn(Cn);
-export { Cn as default };
+wn(Tn);
+export { Tn as default };
