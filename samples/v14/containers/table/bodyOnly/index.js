@@ -1,10 +1,10 @@
 import columns from "./columns.json" with { type: "json" };
 import data from "./data.json" with { type: "json" };
-import runInstruction from "../../../../../docs/dist/v11/min.js";
+import "../../../../../docs/dist/v13/min.js";
 
 const start = () => {
     try {
-        const spec = runInstruction({
+        const spec = window.ks.jsonRenderers.runInstructions.render.renderFunc({
             instructionMainKey: "table",
             instructionSubKey: "bodyOnly",
             data: { columns, data },

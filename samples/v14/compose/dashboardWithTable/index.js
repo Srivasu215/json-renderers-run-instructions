@@ -1,17 +1,19 @@
 import dashboardData from "./data.json" with { type: "json" };
-import runInstruction from "../../../../docs/dist/v11/min.js";
+import "../../../../docs/dist/v13/min.js";
 
 const start = () => {
     try {
+        const renderFunc = window.ks.jsonRenderers.runInstructions.render.renderFunc;
+
         // 1. Build KPI Cards via menu.cards
-        const cardsSpec = runInstruction({
+        const cardsSpec = renderFunc({
             instructionMainKey: "menu",
             instructionSubKey: "cards",
             data: { items: dashboardData.kpiCards }
         });
 
         // 2. Build Invoices Table via table.simple
-        const tableSpec = runInstruction({
+        const tableSpec = renderFunc({
             instructionMainKey: "table",
             instructionSubKey: "simple",
             data: {

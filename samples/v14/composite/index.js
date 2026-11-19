@@ -1,12 +1,14 @@
 import compositeData from "./data.json" with { type: "json" };
-import runInstruction from "../../../docs/dist/v11/min.js";
+import "../../../docs/dist/v13/min.js";
 
 let selectedRowIndex = null;
 
 const start = () => {
     try {
+        const renderFunc = window.ks.jsonRenderers.runInstructions.render.renderFunc;
+
         // 1. Render Table Component
-        const tableSpec = runInstruction({
+        const tableSpec = renderFunc({
             instructionMainKey: "table",
             instructionSubKey: "simple",
             data: {
@@ -27,14 +29,14 @@ const start = () => {
         });
 
         // 2. Render Form Component
-        const formSpec = runInstruction({
+        const formSpec = renderFunc({
             instructionMainKey: "form",
             instructionSubKey: "simple",
             data: { columns: compositeData.columns }
         });
 
         // 3. Render DataList Component (for autocomplete inside the form)
-        const dataListSpec = runInstruction({
+        const dataListSpec = renderFunc({
             instructionMainKey: "dataList",
             instructionSubKey: "simple",
             data: { columns: compositeData.categoriesDataList }

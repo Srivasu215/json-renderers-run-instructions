@@ -1,24 +1,26 @@
 import composeData from "./data.json" with { type: "json" };
-import runInstruction from "../../../../docs/dist/v11/min.js";
+import "../../../../docs/dist/v13/min.js";
 
 const start = () => {
     try {
+        const renderFunc = window.ks.jsonRenderers.runInstructions.render.renderFunc;
+
         // 1. Build Form Container
-        const formSpec = runInstruction({
+        const formSpec = renderFunc({
             instructionMainKey: "form",
             instructionSubKey: "simple",
             data: { columns: composeData.formColumns }
         });
 
         // 2. Build Select Controls (direct)
-        const selectSpec = runInstruction({
+        const selectSpec = renderFunc({
             instructionMainKey: "select",
             instructionSubKey: "simple",
             data: { columns: composeData.selectColumns }
         });
 
         // 3. Build DataList Control (direct)
-        const dataListSpec = runInstruction({
+        const dataListSpec = renderFunc({
             instructionMainKey: "dataList",
             instructionSubKey: "simple",
             data: { columns: composeData.dataListColumns }

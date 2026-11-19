@@ -1,5 +1,5 @@
 import columns from "./columns.json" with { type: "json" };
-import "../../../../docs/dist/v12/min.js";
+import "../../../../docs/dist/v13/min.js";
 
 const start = () => {
     try {

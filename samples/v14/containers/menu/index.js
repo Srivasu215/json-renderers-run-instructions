@@ -1,10 +1,12 @@
 import menuData from "./items.json" with { type: "json" };
-import runInstruction from "../../../../docs/dist/v11/min.js";
+import "../../../../docs/dist/v13/min.js";
 
 const start = () => {
     try {
+        const renderFunc = window.ks.jsonRenderers.runInstructions.render.renderFunc;
+
         // 1. Simple Navigation Menu
-        const specSimple = runInstruction({
+        const specSimple = renderFunc({
             instructionMainKey: "menu",
             instructionSubKey: "simple",
             data: menuData.simple
@@ -17,7 +19,7 @@ const start = () => {
         });
 
         // 2. Menu Cards Grid
-        const specCards = runInstruction({
+        const specCards = renderFunc({
             instructionMainKey: "menu",
             instructionSubKey: "cards",
             data: menuData.cards

@@ -1,10 +1,12 @@
 import cardData from "./data.json" with { type: "json" };
-import runInstruction from "../../../../docs/dist/v11/min.js";
+import "../../../../docs/dist/v13/min.js";
 
 const start = () => {
     try {
+        const renderFunc = window.ks.jsonRenderers.runInstructions.render.renderFunc;
+
         // 1. Simple Card
-        const specSimple = runInstruction({
+        const specSimple = renderFunc({
             instructionMainKey: "card",
             instructionSubKey: "simple",
             data: cardData.simple
@@ -17,7 +19,7 @@ const start = () => {
         });
 
         // 2. Card With Header
-        const specHeader = runInstruction({
+        const specHeader = renderFunc({
             instructionMainKey: "card",
             instructionSubKey: "withHeader",
             data: cardData.withHeader
@@ -30,7 +32,7 @@ const start = () => {
         });
 
         // 3. Card With Header and Footer
-        const specFooter = runInstruction({
+        const specFooter = renderFunc({
             instructionMainKey: "card",
             instructionSubKey: "withFooter",
             data: cardData.withFooter

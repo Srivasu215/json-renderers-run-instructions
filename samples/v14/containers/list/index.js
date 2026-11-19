@@ -1,10 +1,12 @@
 import itemsData from "./items.json" with { type: "json" };
-import runInstruction from "../../../../docs/dist/v11/min.js";
+import "../../../../docs/dist/v13/min.js";
 
 const start = () => {
     try {
+        const renderFunc = window.ks.jsonRenderers.runInstructions.render.renderFunc;
+
         // 1. List Group
-        const specGroup = runInstruction({
+        const specGroup = renderFunc({
             instructionMainKey: "list",
             instructionSubKey: "group",
             data: itemsData.group
@@ -17,7 +19,7 @@ const start = () => {
         });
 
         // 2. Ordered List
-        const specOrdered = runInstruction({
+        const specOrdered = renderFunc({
             instructionMainKey: "list",
             instructionSubKey: "ordered",
             data: itemsData.ordered
