@@ -1,9 +1,9 @@
 import columns from "./columns.json" with { type: "json" };
-import runInstruction from "../../../../docs/dist/v11/min.js";
+import "../../../../docs/dist/v12/min.js";
 
 const start = () => {
     try {
-        const spec = runInstruction({
+        const spec = window.ks.jsonRenderers.runInstructions.render.renderFunc({
             instructionMainKey: "dataList",
             instructionSubKey: "simple",
             data: { columns }
