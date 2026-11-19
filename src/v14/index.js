@@ -1,6 +1,6 @@
 import { spec, definitions } from "spec-repo";
+import runInstructions from "json-renderers-run-instructions-steps";
 
-import runInstructions from "./runInstructions/index.js";
 import runOptions from "./runOptions/index.js";
 import registerGlobal from "./registerGlobal/index.js";
 
@@ -19,7 +19,7 @@ const startFunc = ({
     // The Canvas
     const base = structuredClone(spec[definition.baseFromSpec]);
 
-    // Task 1: Execute blueprint instructions (Array-based)
+    // Task 1: Execute blueprint instructions (Array-based, from dedicated steps package)
     runInstructions({
         instructions: definition.instructions ?? [],
         base,

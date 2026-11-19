@@ -1,5 +1,4 @@
-import { instructions as instructionsRepo } from "spec-repo";
-import { executeStep } from "../runInstructions/index.js";
+import { executeStep } from "json-renderers-run-instructions-steps";
 
 const isObject = value => value !== null && typeof value === "object" && !Array.isArray(value);
 
@@ -41,8 +40,8 @@ const runOptions = ({
         if (!hasActiveSwitch) continue;
 
         // 1. Run initialize instruction if present (e.g. "searchFrame")
-        if (featureSwitches.initialize && instructionsRepo[featureSwitches.initialize]) {
-            executeStep(instructionsRepo[featureSwitches.initialize], { base, data }, showLog);
+        if (featureSwitches.initialize) {
+            executeStep(featureSwitches.initialize, { base, data }, showLog);
         }
 
         // 2. Run enabled switch instructions (e.g. "searchLabel", "searchInput")
@@ -50,8 +49,8 @@ const runOptions = ({
             if (switchKey === "initialize") continue;
 
             const isEnabled = isBool || userFeature[switchKey] === true;
-            if (isEnabled && instructionsRepo[instructionKey]) {
-                executeStep(instructionsRepo[instructionKey], { base, data }, showLog);
+            if (isEnabled) {
+                executeStep(instructionKey, { base, data }, showLog);
             }
         }
     }

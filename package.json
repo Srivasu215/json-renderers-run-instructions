@@ -16,6 +16,7 @@
     "build": "npx @keshavsoft/build-cli"
   },
   "dependencies": {
+    "json-renderers-run-instructions-steps": "file:../json-renderers-run-instructions-steps",
     "json-renderers-run-options": "^1.2.1",
     "json-transformer-funcs-one-dimension": "^1.9.9",
     "json-transformer-funcs-primitive": "^1.9.3",
