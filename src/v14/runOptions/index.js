@@ -1,3 +1,6 @@
+import { instructions as instructionsRepo } from "spec-repo";
+import { executeStep } from "../runInstructions/index.js";
+
 const isObject = value => value !== null && typeof value === "object" && !Array.isArray(value);
 
 const getFeatureOptions = (options, featureKey) => {
@@ -9,20 +12,16 @@ const getFeatureOptions = (options, featureKey) => {
 };
 
 /**
- * 2-level loop for applying option switches from definitions.json:
- * Level 1: Loop over feature groups (search, serial, options)
- * Level 2: Loop over switches inside the feature (showLabel, showHelper, showInput...)
+ * Task 2: Applies key-value feature options (search, serial, actions) to base with data.
  */
 const runOptions = ({
-    base,
     options = {},
     optionDefs = {},
-    instructions = {},
-    spec = {},
-    executeInstruction,
+    base,
+    data,
     showLog = false
 } = {}) => {
-    if (!base || !isObject(options) || !isObject(optionDefs) || typeof executeInstruction !== "function") {
+    if (!base || !isObject(options) || !isObject(optionDefs)) {
         return base;
     }
 
@@ -41,20 +40,18 @@ const runOptions = ({
         );
         if (!hasActiveSwitch) continue;
 
-        if (featureSwitches.initialize && instructions[featureSwitches.initialize]) {
-            executeInstruction({
-                instruction: instructions[featureSwitches.initialize]
-            });
+        // 1. Run initialize instruction if present (e.g. "searchFrame")
+        if (featureSwitches.initialize && instructionsRepo[featureSwitches.initialize]) {
+            executeStep(instructionsRepo[featureSwitches.initialize], { base, data }, showLog);
         }
 
+        // 2. Run enabled switch instructions (e.g. "searchLabel", "searchInput")
         for (const [switchKey, instructionKey] of Object.entries(featureSwitches)) {
             if (switchKey === "initialize") continue;
 
             const isEnabled = isBool || userFeature[switchKey] === true;
-            if (isEnabled && instructions[instructionKey]) {
-                executeInstruction({
-                    instruction: instructions[instructionKey]
-                });
+            if (isEnabled && instructionsRepo[instructionKey]) {
+                executeStep(instructionsRepo[instructionKey], { base, data }, showLog);
             }
         }
     }
@@ -62,5 +59,4 @@ const runOptions = ({
     return base;
 };
 
-export { runOptions };
 export default runOptions;

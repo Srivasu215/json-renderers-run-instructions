@@ -1,6 +1,6 @@
-import { spec, instructions, definitions } from "spec-repo";
+import { spec, definitions } from "spec-repo";
 
-import executeInstruction from "./types/index.js";
+import runInstructions from "./runInstructions/index.js";
 import runOptions from "./runOptions/index.js";
 import registerGlobal from "./registerGlobal/index.js";
 
@@ -16,32 +16,31 @@ const startFunc = ({
         throw new Error(`Definition not found: ${instructionMainKey}.${instructionSubKey}`);
     }
 
+    // The Canvas
     const base = structuredClone(spec[definition.baseFromSpec]);
-    const context = { base, data };
 
-    const instructionsToRun = definition.instructions ?? [];
-    instructionsToRun.forEach(keyOrObj => {
-        const instruction = typeof keyOrObj === "string" ? instructions[keyOrObj] : keyOrObj;
-        if (instruction) {
-            executeInstruction({ instruction, context, spec, showLog });
-        }
-    });
-
-    const optionDefs = (definition.options && typeof definition.options === "object")
-        ? definition.options
-        : (definitions[instructionMainKey]?.options ?? instructions.options?.[definition.options] ?? {});
-
-    runOptions({
-        base: context.base,
-        options,
-        optionDefs,
-        instructions,
-        spec,
-        executeInstruction: ({ instruction }) => executeInstruction({ instruction, context, spec, showLog }),
+    // Task 1: Execute blueprint instructions (Array-based)
+    runInstructions({
+        instructions: definition.instructions ?? [],
+        base,
+        data,
         showLog
     });
 
-    return context.base;
+    // Task 2: Apply feature options (Key-Value switch-based)
+    const optionDefs = (definition.options && typeof definition.options === "object")
+        ? definition.options
+        : (definitions[instructionMainKey]?.options ?? {});
+
+    runOptions({
+        options,
+        optionDefs,
+        base,
+        data,
+        showLog
+    });
+
+    return base;
 };
 
 export default startFunc;

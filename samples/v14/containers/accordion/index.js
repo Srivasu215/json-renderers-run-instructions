@@ -1,5 +1,5 @@
 import itemsData from "./items.json" with { type: "json" };
-import "../../../../docs/dist/v13/min.js";
+import "../../../../docs/dist/v14/min.js";
 
 const start = () => {
     try {
