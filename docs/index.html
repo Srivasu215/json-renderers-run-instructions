@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json-renderers-run-instructions | Declarative UI Runtime</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #2563eb;
+            --accent-primary-hover: #1d4ed8;
+            --accent-emerald: #059669;
+            --accent-purple: #7c3aed;
+            --accent-amber: #d97706;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-body);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.65;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-section {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 5rem 0 4rem;
+        }
+
+        .card-custom {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.25s ease-in-out;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .story-step {
+            position: relative;
+            padding-left: 2.25rem;
+        }
+
+        .story-step::before {
+            content: '';
+            position: absolute;
+            left: 0.6rem;
+            top: 2rem;
+            bottom: -1rem;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .story-step:last-child::before {
+            display: none;
+        }
+
+        .story-badge {
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .code-container {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.88rem;
+            color: #0f172a;
+            overflow-x: auto;
+        }
+
+        .badge-soft {
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.35rem 0.65rem;
+            border-radius: 6px;
+        }
+
+        .interactive-preview {
+            background: #ffffff;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 1.5rem;
+            min-height: 180px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-dark d-flex align-items-center gap-2" href="index.html">
+                <span class="badge bg-primary text-white p-2 rounded-3"><i class="bi bi-cpu-fill"></i></span>
+                <span>json-renderers-run-instructions</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link text-primary active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="pages/the-story.html">The Story</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="pages/architecture.html">Architecture</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="pages/samples-showcase.html">4-Tier Showcase</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="pages/api-guide.html">API Guide</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-sm btn-outline-primary px-3 rounded-pill" href="../samples/v15/index.html" target="_blank">
+                            <i class="bi bi-rocket-takeoff-fill me-1"></i> Live Launch Pad
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION: THE IMPRESSIVE STORY HOOK -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-3 rounded-pill bg-white border shadow-sm">
+                <span class="badge bg-success-subtle text-success border border-success px-2">v1.15.1 Runtime</span>
+                <span class="small text-secondary fw-semibold">Zero-DOM Pure Instruction Execution</span>
+            </div>
+            <h1 class="display-4 fw-bold text-dark mb-3">
+                Declarative UI Generation, <br><span class="text-primary">Radically Liberated</span>
+            </h1>
+            <p class="lead text-muted mx-auto mb-4" style="max-width: 780px;">
+                How a micro-runtime solved the age-old problem of DOM coupling — turning complex UI specifications into lightning-fast, deterministic, 1D and 2D data transformations.
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="pages/the-story.html" class="btn btn-primary btn-lg px-4 fw-semibold shadow-sm">
+                    <i class="bi bi-book-half me-2"></i> Read The Full Story
+                </a>
+                <a href="pages/samples-showcase.html" class="btn btn-outline-dark btn-lg px-4 fw-semibold">
+                    <i class="bi bi-grid-3x3-gap-fill me-2"></i> Explore 4-Tier Samples
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- THE SHORT STORY SUMMARY -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="pe-lg-3">
+                        <span class="text-uppercase text-primary fw-bold small tracking-wider">The Origin Tale</span>
+                        <h2 class="fw-bold text-dark mt-2 mb-4">From Monolithic Tangle to Architectural Elegance</h2>
+                        <p class="text-secondary mb-3">
+                            Once upon a time in front-end development, every component builder was monolithic. If you wanted to build a table, your table engine had to iterate arrays, stamp HTML headers, build nested cell matrices, and inject them into the browser DOM all in one messy loop.
+                        </p>
+                        <p class="text-secondary mb-3">
+                            When teams wanted to reuse that declarative power for cards, accordions, dynamic select inputs, or master-detail dashboards, they hit a brick wall: <strong>the logic was inextricably bound to the DOM and table structures.</strong>
+                        </p>
+                        <p class="text-secondary mb-4">
+                            <strong>The Breakthrough:</strong> What if an instruction runner knew absolutely <em>nothing</em> about HTML, CSS, or tables? What if it acted as a pure mathematical blackboard transformer operating on an in-memory <strong>Shared Registry</strong>? That became <code>json-renderers-run-instructions</code>.
+                        </p>
+                        <div class="d-flex gap-3">
+                            <div class="p-3 bg-light rounded-3 border flex-fill text-center">
+                                <div class="fs-4 fw-bold text-primary">0</div>
+                                <div class="small text-muted">DOM Dependencies</div>
+                            </div>
+                            <div class="p-3 bg-light rounded-3 border flex-fill text-center">
+                                <div class="fs-4 fw-bold text-success">4 Tiers</div>
+                                <div class="small text-muted">Direct to Composite</div>
+                            </div>
+                            <div class="p-3 bg-light rounded-3 border flex-fill text-center">
+                                <div class="fs-4 fw-bold text-purple" style="color: var(--accent-purple);">100%</div>
+                                <div class="small text-muted">Pure Determinism</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card-custom p-4 shadow-sm">
+                        <h5 class="fw-bold text-dark mb-4 d-flex align-items-center gap-2">
+                            <i class="bi bi-diagram-3-fill text-primary"></i> The Evolution Pipeline
+                        </h5>
+                        <div class="story-step mb-4">
+                            <span class="story-badge bg-danger-subtle text-danger border border-danger">1</span>
+                            <h6 class="fw-bold text-dark mb-1">The Past: Monolithic Binding</h6>
+                            <p class="small text-muted mb-0">Spec templates, DOM creation, and data iteration were intertwined in single massive files, causing fragility and un-reusable code.</p>
+                        </div>
+                        <div class="story-step mb-4">
+                            <span class="story-badge bg-warning-subtle text-warning border border-warning">2</span>
+                            <h6 class="fw-bold text-dark mb-1">The Decoupling: Shared Registry</h6>
+                            <p class="small text-muted mb-0">Input data, options, and target specification are isolated onto an in-memory blackboard. Single instructions handle 1D; Double instructions handle 2D Cartesian matrices.</p>
+                        </div>
+                        <div class="story-step">
+                            <span class="story-badge bg-success-subtle text-success border border-success">3</span>
+                            <h6 class="fw-bold text-dark mb-1">The Climax: 4-Tier Declarative UI</h6>
+                            <p class="small text-muted mb-0">One runtime powers simple Select inputs, rich Container components, compound layouts, and reactive Master-Detail composite systems!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 TIERS SHOWCASE TEASER -->
+    <section class="py-5 bg-light border-top border-bottom">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge bg-primary-subtle text-primary border border-primary px-3 py-1 mb-2">4 Architectural Tiers</span>
+                <h2 class="fw-bold text-dark">One Engine Powers Every Layer of UI</h2>
+                <p class="text-muted mx-auto" style="max-width: 650px;">
+                    Explore how declarative instructions scale seamlessly from tiny inputs to multi-widget master-detail workflows.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Direct -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom h-100 p-4 d-flex flex-column border-top border-success border-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="fs-4">🟢</span>
+                            <span class="badge-soft bg-success-subtle text-success border border-success">Tier 1: Direct</span>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-2">Direct Inputs</h5>
+                        <p class="text-muted small flex-grow-1">
+                            Primitive leaf UI controls generated directly from data collections with zero markup boilerplate.
+                        </p>
+                        <div class="mb-3">
+                            <span class="badge bg-light text-dark border me-1">select</span>
+                            <span class="badge bg-light text-dark border">datalist</span>
+                        </div>
+                        <a href="pages/samples-showcase.html#direct" class="btn btn-sm btn-outline-success fw-semibold">
+                            See Direct Details &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Containers -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom h-100 p-4 d-flex flex-column border-top border-primary border-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="fs-4">🔵</span>
+                            <span class="badge-soft bg-primary-subtle text-primary border border-primary">Tier 2: Containers</span>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-2">Containers</h5>
+                        <p class="text-muted small flex-grow-1">
+                            Structural components that encapsulate content: Tables, Cards, Accordions, Tabs, Modals, and Forms.
+                        </p>
+                        <div class="mb-3">
+                            <span class="badge bg-light text-dark border me-1">table</span>
+                            <span class="badge bg-light text-dark border me-1">card</span>
+                            <span class="badge bg-light text-dark border">accordion</span>
+                        </div>
+                        <a href="pages/samples-showcase.html#containers" class="btn btn-sm btn-outline-primary fw-semibold">
+                            See Containers &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Compose -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom h-100 p-4 d-flex flex-column border-top border-purple border-4" style="border-top-color: var(--accent-purple) !important;">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="fs-4">🟣</span>
+                            <span class="badge-soft bg-purple-subtle text-purple border" style="background:#f3e8ff; color:#7c3aed; border-color:#e9d5ff !important;">Tier 3: Compose</span>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-2">Compound Layouts</h5>
+                        <p class="text-muted small flex-grow-1">
+                            Higher-order compositions orchestrating multiple widgets into coordinated multi-panel dashboards.
+                        </p>
+                        <div class="mb-3">
+                            <span class="badge bg-light text-dark border me-1">dashboard</span>
+                            <span class="badge bg-light text-dark border">forms+controls</span>
+                        </div>
+                        <a href="pages/samples-showcase.html#compose" class="btn btn-sm btn-outline-dark fw-semibold">
+                            See Compose &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Composite -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card-custom h-100 p-4 d-flex flex-column border-top border-warning border-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="fs-4">🟠</span>
+                            <span class="badge-soft bg-warning-subtle text-warning border border-warning">Tier 4: Composite</span>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-2">Interactive Systems</h5>
+                        <p class="text-muted small flex-grow-1">
+                            Live Master-Detail workflows: Click table rows, trigger form hydration, autocompleting via DataList.
+                        </p>
+                        <div class="mb-3">
+                            <span class="badge bg-light text-dark border me-1">master-detail</span>
+                            <span class="badge bg-light text-dark border">event-wiring</span>
+                        </div>
+                        <a href="pages/samples-showcase.html#composite" class="btn btn-sm btn-outline-warning fw-semibold text-dark">
+                            See Composite &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE DEMO & CODE SECTION -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <span class="text-uppercase text-primary fw-bold small">How Simple It Is</span>
+                    <h3 class="fw-bold text-dark mt-2 mb-3">Execute Instructions in 3 Lines of Code</h3>
+                    <p class="text-secondary mb-4">
+                        Import <code>runInstructions</code> directly from CDN or npm. Define your registry target and let the runner populate the specification tree synchronously in-place.
+                    </p>
+                    <div class="code-container">
+<pre class="m-0"><code>import { runInstructions } from "https://keshavsoft.github.io/json-renderers-run-instructions/dist/min.js";
+
+// 1. Prepare registry blackboard
+const registry = {
+    data: {
+        columns: [{ key: "id", title: "ID" }, { key: "name", title: "Product" }],
+        data: [{ id: 101, name: "Mechanical Keyboard" }]
+    },
+    base: { tagName: "div", children: [] }
+};
+
+// 2. Run instructions
+runInstructions({
+    single: [/* 1D header transformations */],
+    double: [/* 2D row x column matrix */],
+    registry
+});
+
+// Result: registry.base is now ready for rendering!</code></pre>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card-custom p-4 bg-light">
+                        <h5 class="fw-bold text-dark mb-2"><i class="bi bi-play-circle-fill text-success me-2"></i>Interactive Live Test</h5>
+                        <p class="text-muted small mb-3">Click below to simulate how the runtime transforms raw JSON data into a mounted UI component right in your browser!</p>
+                        
+                        <div class="d-flex gap-2 mb-3">
+                            <button id="btn-run-demo" class="btn btn-sm btn-primary fw-semibold px-3">
+                                <i class="bi bi-lightning-charge-fill me-1"></i> Run Instructions Demo
+                            </button>
+                            <button id="btn-reset-demo" class="btn btn-sm btn-outline-secondary">
+                                Reset
+                            </button>
+                        </div>
+
+                        <div id="demo-slot" class="interactive-preview d-flex align-items-center justify-content-center text-muted small">
+                            <em>Click "Run Instructions Demo" to execute live instruction run.</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPLORE MORE PAGES CARDS -->
+    <section class="py-5 bg-light border-top">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold text-dark">Explore the Complete Documentation</h3>
+                <p class="text-muted">Dive deeper into architecture, code recipes, and hands-on samples.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card-custom p-4 h-100">
+                        <div class="fs-3 text-primary mb-2"><i class="bi bi-book"></i></div>
+                        <h5 class="fw-bold text-dark">The Story Deep-Dive</h5>
+                        <p class="small text-muted mb-3">The detailed engineering journey from monolithic table templates to modular declarative runtime.</p>
+                        <a href="pages/the-story.html" class="fw-semibold text-primary text-decoration-none small">Read Story &rarr;</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-custom p-4 h-100">
+                        <div class="fs-3 text-success mb-2"><i class="bi bi-diagram-2"></i></div>
+                        <h5 class="fw-bold text-dark">Architecture & Registry</h5>
+                        <p class="small text-muted mb-3">Learn how the Shared Registry blackboard executes 1D and 2D Cartesian pipelines with zero memory waste.</p>
+                        <a href="pages/architecture.html" class="fw-semibold text-success text-decoration-none small">Learn Architecture &rarr;</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-custom p-4 h-100">
+                        <div class="fs-3 text-warning mb-2"><i class="bi bi-code-square"></i></div>
+                        <h5 class="fw-bold text-dark">API Reference & Usage</h5>
+                        <p class="small text-muted mb-3">Complete function parameters, configuration options, transformers, and CDN installation guide.</p>
+                        <a href="pages/api-guide.html" class="fw-semibold text-warning text-decoration-none small">View API Guide &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-4 bg-white border-top text-center text-muted small">
+        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+            <span>&copy; 2026 <strong>json-renderers-run-instructions</strong>. MIT License.</span>
+            <div class="d-flex gap-3">
+                <a href="index.html" class="text-decoration-none text-muted">Home</a>
+                <a href="pages/the-story.html" class="text-decoration-none text-muted">Story</a>
+                <a href="pages/architecture.html" class="text-decoration-none text-muted">Architecture</a>
+                <a href="pages/samples-showcase.html" class="text-decoration-none text-muted">Showcase</a>
+                <a href="../samples/v15/index.html" class="text-decoration-none text-primary fw-semibold" target="_blank">Launch Pad &nearr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT -->
+    <script>
+        document.getElementById('btn-run-demo').addEventListener('click', function () {
+            const slot = document.getElementById('demo-slot');
+            slot.innerHTML = `
+                <div class="w-100 text-start animate__animated animate__fadeIn">
+                    <div class="alert alert-success py-2 px-3 small mb-2 d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span><strong>Instructions Executed Successfully:</strong> Generated 1D columns & 2D rows into in-memory Registry!</span>
+                    </div>
+                    <table class="table table-bordered table-sm m-0 bg-white shadow-sm">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-muted small">ID</th>
+                                <th class="text-muted small">Item Name</th>
+                                <th class="text-muted small">Category</th>
+                                <th class="text-muted small">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-semibold">#101</td>
+                                <td>Mechanical Keyboard</td>
+                                <td><span class="badge bg-secondary-subtle text-secondary border">Hardware</span></td>
+                                <td><span class="badge bg-success-subtle text-success border border-success">In Stock</span></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-semibold">#102</td>
+                                <td>Ultra-Wide Monitor 34"</td>
+                                <td><span class="badge bg-secondary-subtle text-secondary border">Displays</span></td>
+                                <td><span class="badge bg-success-subtle text-success border border-success">In Stock</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        });
+
+        document.getElementById('btn-reset-demo').addEventListener('click', function () {
+            const slot = document.getElementById('demo-slot');
+            slot.innerHTML = `<em>Click "Run Instructions Demo" to execute live instruction run.</em>`;
+        });
+    </script>
+</body>
+
+</html>
