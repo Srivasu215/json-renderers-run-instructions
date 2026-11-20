@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-Tier Showcase | json-renderers-run-instructions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #2563eb;
+            --accent-emerald: #059669;
+            --accent-purple: #7c3aed;
+            --accent-amber: #d97706;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-body);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.65;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .page-header {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 4.5rem 0 3rem;
+        }
+
+        .tier-section {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.25rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        .sample-pill {
+            background: #f1f5f9;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .sample-pill:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+            transform: translateY(-1px);
+        }
+
+        .badge-tier {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-dark d-flex align-items-center gap-2" href="../index.html">
+                <span class="badge bg-primary text-white p-2 rounded-3"><i class="bi bi-cpu-fill"></i></span>
+                <span>json-renderers-run-instructions</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link text-dark" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="the-story.html">The Story</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="architecture.html">Architecture</a></li>
+                    <li class="nav-item"><a class="nav-link text-primary active" href="samples-showcase.html">4-Tier Showcase</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="api-guide.html">API Guide</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-sm btn-outline-primary px-3 rounded-pill" href="../../samples/v15/index.html" target="_blank">
+                            <i class="bi bi-rocket-takeoff-fill me-1"></i> Launch Pad
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="page-header text-center">
+        <div class="container" style="max-width: 820px;">
+            <span class="badge bg-primary-subtle text-primary border border-primary px-3 py-1 mb-2">Hands-On Gallery</span>
+            <h1 class="display-5 fw-bold text-dark mb-3">The 4 Architectural Tiers in Action</h1>
+            <p class="lead text-muted">
+                From micro input primitives to fully-wired Master-Detail dashboards. Explore how each sample in this repository demonstrates declarative instruction execution.
+            </p>
+        </div>
+    </header>
+
+    <!-- SHOWCASE BODY -->
+    <main class="py-5 bg-white">
+        <div class="container" style="max-width: 960px;">
+
+            <!-- TIER 1: DIRECT -->
+            <section id="direct" class="tier-section border-top border-success border-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="badge-tier bg-success-subtle text-success border border-success">Tier 1 &bull; Direct Leaf Elements</span>
+                    <span class="text-muted small">Primitive Inputs</span>
+                </div>
+                <h3 class="fw-bold text-dark mb-2">Direct Controls</h3>
+                <p class="text-secondary">
+                    Direct components represent single leaf input elements rendered directly from data collections with no wrapping structural containers. Ideal for dropdowns, autocompletion inputs, and choice pickers.
+                </p>
+                <div class="p-3 bg-light rounded-3 border mb-3">
+                    <h6 class="fw-bold text-dark mb-2"><i class="bi bi-folder2-open text-success me-2"></i>Live Working Samples in Repo:</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="sample-pill" href="../../samples/v15/direct/select/index.html" target="_blank">
+                            <i class="bi bi-ui-checks"></i> direct/select &nearr;
+                        </a>
+                        <a class="sample-pill" href="../../samples/v15/direct/dataList/index.html" target="_blank">
+                            <i class="bi bi-list-nested"></i> direct/dataList &nearr;
+                        </a>
+                        <a class="sample-pill" href="../../samples/v15/direct/index.html" target="_blank">
+                            <i class="bi bi-arrow-right-circle"></i> Direct Hub &nearr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TIER 2: CONTAINERS -->
+            <section id="containers" class="tier-section border-top border-primary border-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="badge-tier bg-primary-subtle text-primary border border-primary">Tier 2 &bull; Functional Units</span>
+                    <span class="text-muted small">Structural Blocks</span>
+                </div>
+                <h3 class="fw-bold text-dark mb-2">Container Components</h3>
+                <p class="text-secondary">
+                    Containers encapsulate child layouts and execute 2D Cartesian instructions. This repository provides rich container implementations:
+                </p>
+                <div class="p-3 bg-light rounded-3 border mb-3">
+                    <h6 class="fw-bold text-dark mb-2"><i class="bi bi-folder2-open text-primary me-2"></i>Live Working Samples in Repo:</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="sample-pill" href="../../samples/v15/containers/table/simple/index.html" target="_blank">
+                            <i class="bi bi-table"></i> table / simple &nearr;
+                        </a>
+                        <a class="sample-pill" href="../../samples/v15/containers/table/withFooter/index.html" target="_blank">
+                            <i class="bi bi-table"></i> table / withFooter &nearr;
+                        </a>
+                        <a class="sample-pill" href="../../samples/v15/containers/card/index.html" target="_blank">
+                            <i class="bi bi-card-heading"></i> card &nearr;
+                        </a>
+                        <a class="sample-pill" href="../../samples/v15/containers/accordion/index.html" target="_blank">
+                            <i class="bi bi-menu-app"></i> accordion &nearr;
+                        </a>
+                        <a class="sample-pill" href="../../samples/v15/containers/form/index.html" target="_blank">
+                            <i class="bi bi-input-cursor-text"></i> form &nearr;
+                        </a>
+                        <a class="sample-pill" href="../../samples/v15/containers/tab/index.html" target="_blank">
+                            <i class="bi bi-segmented-nav"></i> tabs &nearr;
+                        </a>
+                        <a class="sample-pill" href="../../samples/v15/containers/modal/index.html" target="_blank">
+                            <i class="bi bi-window"></i> modal &nearr;
+                        </a>
+                        <a class="sample-pill" href="../../samples/v15/containers/index.html" target="_blank">
+                            <i class="bi bi-arrow-right-circle"></i> Containers Hub &nearr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TIER 3: COMPOSE -->
+            <section id="compose" class="tier-section border-top border-purple border-4" style="border-top-color: var(--accent-purple) !important;">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="badge-tier" style="background:#f3e8ff; color:#7c3aed; border:1px solid #e9d5ff;">Tier 3 &bull; Compound Layouts</span>
+                    <span class="text-muted small">Higher-Order Views</span>
+                </div>
+                <h3 class="fw-bold text-dark mb-2">Compose Layouts</h3>
+                <p class="text-secondary">
+                    Orchestrates multiple container types into cohesive compound interfaces such as multi-widget analytics dashboards or synchronized form-and-control panels.
+                </p>
+                <div class="p-3 bg-light rounded-3 border mb-3">
+                    <h6 class="fw-bold text-dark mb-2"><i class="bi bi-folder2-open text-purple me-2"></i>Live Working Samples in Repo:</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="sample-pill" href="../../samples/v15/compose/dashboardWithTable/index.html" target="_blank">
+                            <i class="bi bi-speedometer2"></i> dashboardWithTable &nearr;
+                        </a>
+                        <a class="sample-pill" href="../../samples/v15/compose/formWithControls/index.html" target="_blank">
+                            <i class="bi bi-layout-text-window"></i> formWithControls &nearr;
+                        </a>
+                        <a class="sample-pill" href="../../samples/v15/compose/index.html" target="_blank">
+                            <i class="bi bi-arrow-right-circle"></i> Compose Hub &nearr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TIER 4: COMPOSITE -->
+            <section id="composite" class="tier-section border-top border-warning border-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="badge-tier bg-warning-subtle text-warning border border-warning">Tier 4 &bull; Master-Detail Workflows</span>
+                    <span class="text-muted small">Interactive Systems</span>
+                </div>
+                <h3 class="fw-bold text-dark mb-2">Composite Interactive Systems</h3>
+                <p class="text-secondary">
+                    The highest tier combines data rendering with live user interactions. The master table renders items; clicking an "Edit" action automatically extracts row data, hydrates an adjacent Form, and triggers live autocompletion through a rendered DataList.
+                </p>
+                <div class="p-3 bg-light rounded-3 border mb-3">
+                    <h6 class="fw-bold text-dark mb-2"><i class="bi bi-folder2-open text-warning me-2"></i>Live Working Sample:</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="sample-pill bg-warning-subtle border-warning fw-bold text-dark" href="../../samples/v15/composite/index.html" target="_blank">
+                            <i class="bi bi-stars text-warning"></i> Open Master-Detail Composite Demo &nearr;
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BOTTOM NAVIGATION -->
+            <div class="d-flex justify-content-between align-items-center pt-3">
+                <a href="architecture.html" class="btn btn-outline-secondary">
+                    &larr; Architecture
+                </a>
+                <a href="api-guide.html" class="btn btn-primary fw-semibold">
+                    API Guide & Quick Start &rarr;
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-4 bg-white border-top text-center text-muted small">
+        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+            <span>&copy; 2026 <strong>json-renderers-run-instructions</strong>. MIT License.</span>
+            <div class="d-flex gap-3">
+                <a href="../index.html" class="text-decoration-none text-muted">Home</a>
+                <a href="the-story.html" class="text-decoration-none text-muted">Story</a>
+                <a href="architecture.html" class="text-decoration-none text-muted">Architecture</a>
+                <a href="samples-showcase.html" class="text-decoration-none text-muted">Showcase</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
