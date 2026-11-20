@@ -4,100 +4,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architecture & Pipeline | json-renderers-run-instructions</title>
+    <title>How It Works | json-renderers-run-instructions</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <style>
         :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --border-color: #e2e8f0;
-            --text-heading: #0f172a;
+            --font-main: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --primary: #4f46e5;
+            --text-title: #0f172a;
             --text-body: #334155;
-            --text-muted: #64748b;
-            --accent-primary: #2563eb;
-            --accent-emerald: #059669;
-            --accent-purple: #7c3aed;
+            --border: #e2e8f0;
         }
 
         body {
-            background-color: var(--bg-primary);
+            background-color: #ffffff;
             color: var(--text-body);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: var(--font-main);
             line-height: 1.65;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        .spotlight-follower {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
         }
 
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
         }
 
         .page-header {
-            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-            border-bottom: 1px solid var(--border-color);
             padding: 4.5rem 0 3rem;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
         }
 
-        .arch-card {
+        .step-card {
             background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
             padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            margin-bottom: 1.75rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: all 0.25s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px -10px rgba(79, 70, 229, 0.12);
+            border-color: #cbd5e1;
+        }
+
+        .step-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .code-box {
             background: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
             padding: 1rem 1.25rem;
-            font-family: "SFMono-Regular", Consolas, monospace;
-            font-size: 0.88rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
             color: #0f172a;
             overflow-x: auto;
         }
 
-        .diagram-container {
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
+        .hover-pop {
+            transition: transform 0.2s ease;
+            display: inline-block;
         }
-
-        .badge-soft {
-            font-size: 0.78rem;
-            font-weight: 600;
-            padding: 0.35rem 0.65rem;
-            border-radius: 6px;
+        .hover-pop:hover {
+            transform: scale(1.05);
+            color: var(--primary) !important;
         }
     </style>
 </head>
 
 <body>
 
+    <div class="spotlight-follower" id="spotlight"></div>
+
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold text-dark d-flex align-items-center gap-2" href="../index.html">
-                <span class="badge bg-primary text-white p-2 rounded-3"><i class="bi bi-cpu-fill"></i></span>
-                <span>json-renderers-run-instructions</span>
+            <a class="navbar-brand text-dark d-flex align-items-center gap-2" href="../index.html">
+                <span class="badge bg-primary text-white p-2 rounded-3 shadow-sm">
+                    <i class="bi bi-cpu-fill fs-5"></i>
+                </span>
+                <span class="fw-bold">json-renderers-run-instructions</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <i class="bi bi-list fs-2 text-dark"></i>
             </button>
             <div class="collapse navbar-collapse" id="navMenu">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold align-items-lg-center gap-lg-2">
-                    <li class="nav-item"><a class="nav-link text-dark" href="../index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="the-story.html">The Story</a></li>
-                    <li class="nav-item"><a class="nav-link text-primary active" href="architecture.html">Architecture</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="samples-showcase.html">4-Tier Showcase</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark" href="api-guide.html">API Guide</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark hover-pop" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark hover-pop" href="the-story.html">The Story</a></li>
+                    <li class="nav-item"><a class="nav-link text-primary active" href="architecture.html">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark hover-pop" href="samples-showcase.html">Components Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark hover-pop" href="api-guide.html">API Guide</a></li>
                     <li class="nav-item ms-lg-2">
-                        <a class="btn btn-sm btn-outline-primary px-3 rounded-pill" href="../../samples/v15/index.html" target="_blank">
-                            <i class="bi bi-rocket-takeoff-fill me-1"></i> Live Launch Pad
+                        <a class="btn btn-sm btn-outline-primary px-3 rounded-pill fw-bold hover-pop" href="../../samples/v15/index.html" target="_blank">
+                            <i class="bi bi-rocket-takeoff-fill me-1 text-primary"></i> Launch Pad &nearr;
                         </a>
                     </li>
                 </ul>
@@ -108,135 +146,132 @@
     <!-- HEADER -->
     <header class="page-header text-center">
         <div class="container" style="max-width: 820px;">
-            <span class="badge bg-success-subtle text-success border border-success px-3 py-1 mb-2">Technical Blueprint</span>
-            <h1 class="display-5 fw-bold text-dark mb-3">Runtime Architecture Deep-Dive</h1>
-            <p class="lead text-muted">
-                How the Shared Registry model and deterministic 1D / 2D instruction pipelines achieve lightning-fast, zero-DOM spec building.
+            <span class="badge bg-primary-subtle text-primary border border-primary px-3 py-1 mb-2 fw-bold">Step-By-Step Process</span>
+            <h1 class="display-5 fw-bold text-dark mb-3">How the Execution Engine Works</h1>
+            <p class="lead text-secondary">
+                Detailed walk-through of the 6 steps transforming a component definition into a completed specification.
             </p>
         </div>
     </header>
 
-    <!-- MAIN ARCHITECTURE -->
+    <!-- CONTENT -->
     <main class="py-5 bg-white">
-        <div class="container" style="max-width: 900px;">
+        <div class="container" style="max-width: 860px;">
 
-            <!-- SHARED REGISTRY SECTION -->
-            <section class="arch-card">
-                <div class="d-flex align-items-center gap-2 mb-3">
-                    <span class="badge-soft bg-primary-subtle text-primary border border-primary">Core Primitive</span>
-                    <h3 class="fw-bold text-dark mb-0">The Shared Registry Pattern</h3>
+            <!-- STEP 1 -->
+            <div class="step-card">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="step-badge" style="background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);">1</span>
+                    <h4 class="fw-bold text-dark mb-0">Select the Component</h4>
                 </div>
                 <p class="text-secondary">
-                    Instead of piping complex state through multi-stage intermediate functional pipelines, <span class="fw-semibold">json-renderers-run-instructions</span> uses a centralized, in-memory blackboard called the <strong>Registry</strong>.
+                    The application specifies the component using a <strong>main key</strong> and <strong>sub key</strong>. For example: <code>table.simple</code>.
                 </p>
-
-                <div class="diagram-container my-4">
-                    <div class="row g-3 text-start justify-content-center">
-                        <div class="col-md-5">
-                            <div class="p-3 bg-white rounded border shadow-sm h-100">
-                                <div class="fw-bold text-primary mb-1"><i class="bi bi-database me-1"></i> registry.data</div>
-                                <div class="small text-muted mb-2">Source Collections</div>
-                                <p class="small text-secondary m-0">Holds input arrays: columns, rows, filter sets, options, or domain models.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="p-3 bg-white rounded border shadow-sm h-100">
-                                <div class="fw-bold text-success mb-1"><i class="bi bi-diagram-3 me-1"></i> registry.base</div>
-                                <div class="small text-muted mb-2">Target Specification Tree</div>
-                                <p class="small text-secondary m-0">The JSON specification node mutated in-place by single and double instruction loops.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <span class="badge bg-dark text-white px-3 py-2">Deterministic In-Place Mutation Pipeline &rarr; 0 Memory Duplication</span>
-                    </div>
-                </div>
-
-                <h5 class="fw-bold text-dark mt-4 mb-2">Why In-Place Registry Mutation?</h5>
-                <ol class="text-secondary ps-3">
-                    <li class="mb-2"><strong>Microsecond Speed & Low GC:</strong> Rendering 1,000 rows × 20 columns involves 20,000 nodes. Immutably cloning whole JSON trees on every iteration triggers severe memory spikes and Garbage Collector stutter. In-place mutation executes in single-digit milliseconds.</li>
-                    <li class="mb-2"><strong>Zero Side Effects:</strong> Because the runner does not touch the browser DOM or window objects, execution is completely free of DOM-triggered reflows or layout thrashing.</li>
-                    <li class="mb-2"><strong>Full Debugging Inspectability:</strong> Setting <code>showLog: true</code> instantly snapshots the blackboard state at each step for unmatched developer observability.</li>
-                </ol>
-            </section>
-
-            <!-- 1D AND 2D PIPELINE PHASES -->
-            <section class="arch-card">
-                <div class="d-flex align-items-center gap-2 mb-3">
-                    <span class="badge-soft bg-purple-subtle text-purple border" style="background:#f3e8ff; color:#7c3aed;">Execution Phases</span>
-                    <h3 class="fw-bold text-dark mb-0">Phase 1 (1D) vs Phase 2 (2D) Execution</h3>
-                </div>
-
-                <p class="text-secondary">
-                    Execution proceeds in two strictly synchronous, predictable phases:
-                </p>
-
-                <div class="row g-4 mt-1 mb-4">
-                    <div class="col-md-6">
-                        <div class="p-3 bg-light rounded-3 border h-100">
-                            <div class="d-flex align-items-center gap-2 mb-2">
-                                <span class="badge bg-primary text-white">Phase 1</span>
-                                <h6 class="fw-bold text-dark mb-0">Single Instructions (1D)</h6>
-                            </div>
-                            <p class="small text-muted mb-2">
-                                Powered by <code>json-instruction-single</code>. Traverses 1D linear collections.
-                            </p>
-                            <ul class="small text-secondary ps-3 mb-0">
-                                <li>Maps <code>registry.data.columns</code> into table header elements (<code>&lt;th&gt;</code>).</li>
-                                <li>Generates column width rules (<code>&lt;colgroup&gt;</code> & <code>&lt;col&gt;</code>).</li>
-                                <li>Transforms options lists for dropdowns and datalists.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="p-3 bg-light rounded-3 border h-100">
-                            <div class="d-flex align-items-center gap-2 mb-2">
-                                <span class="badge bg-success text-white">Phase 2</span>
-                                <h6 class="fw-bold text-dark mb-0">Double Instructions (2D)</h6>
-                            </div>
-                            <p class="small text-muted mb-2">
-                                Powered by <code>json-instruction-double</code>. Computes Cartesian matrices.
-                            </p>
-                            <ul class="small text-secondary ps-3 mb-0">
-                                <li>Iterates data rows &times; column definitions.</li>
-                                <li>Calculates individual cell values, styles, and data attributes.</li>
-                                <li>Mounts structured matrix children under <code>registry.base</code>.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="code-box">
-<pre class="m-0"><code>// Typical execution signature
-runInstructions({
-    single: [
-        {
-            source: "data.columns",
-            template: "headers.default",
-            target: "base.children[0].children[0].children"
-        }
-    ],
-    double: [
-        {
-            outerSource: "data.data",
-            innerSource: "data.columns",
-            template: "cells.default",
-            target: "base.children[1].children"
-        }
-    ],
-    registry,
-    showLog: false
-});</code></pre>
+                    instructionMainKey: "table",<br>
+                    instructionSubKey: "simple"
                 </div>
-            </section>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="step-card">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="step-badge" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);">2</span>
+                    <h4 class="fw-bold text-dark mb-0">Retrieve the Definition</h4>
+                </div>
+                <p class="text-secondary">
+                    The engine retrieves the corresponding definition from <code>spec-repo</code>. The definition identifies:
+                </p>
+                <ul class="text-secondary mb-3">
+                    <li>The <strong>base specification</strong> (the structural template to use)</li>
+                    <li>The <strong>required instructions</strong> (steps to generate nodes)</li>
+                    <li>The <strong>available options</strong> (features that can be enabled or configured)</li>
+                </ul>
+                <div class="code-box">
+                    const definition = definitions[instructionMainKey]?.[instructionSubKey];
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="step-card">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="step-badge" style="background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);">3</span>
+                    <h4 class="fw-bold text-dark mb-0">Prepare the Base Specification</h4>
+                </div>
+                <p class="text-secondary">
+                    The engine creates an independent copy of the selected base structure using <code>structuredClone</code>. This ensures no shared reference pollution and provides a fresh starting canvas for building the component.
+                </p>
+                <div class="code-box">
+                    const base = structuredClone(spec[definition.baseFromSpec]);
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="step-card">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="step-badge" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">4</span>
+                    <h4 class="fw-bold text-dark mb-0">Execute the Instructions</h4>
+                </div>
+                <p class="text-secondary">
+                    The engine passes the instructions, base structure, and input data to <code>json-renderers-run-instructions-steps</code>. These instructions update the base specification according to the selected component definition.
+                </p>
+                <div class="code-box">
+                    runInstructions({<br>
+                    &nbsp;&nbsp;instructions: definition.instructions ?? [],<br>
+                    &nbsp;&nbsp;base,<br>
+                    &nbsp;&nbsp;data,<br>
+                    &nbsp;&nbsp;showLog<br>
+                    });
+                </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="step-card">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="step-badge" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">5</span>
+                    <h4 class="fw-bold text-dark mb-0">Apply Configuration Options</h4>
+                </div>
+                <p class="text-secondary">
+                    The engine passes the selected options to <code>runOptions</code>. Supported features (such as search boxes, serial numbers, custom action buttons, or styles) are applied to the generated specification.
+                </p>
+                <div class="code-box">
+                    runOptions({<br>
+                    &nbsp;&nbsp;options,<br>
+                    &nbsp;&nbsp;optionDefs,<br>
+                    &nbsp;&nbsp;base,<br>
+                    &nbsp;&nbsp;data,<br>
+                    &nbsp;&nbsp;showLog<br>
+                    });
+                </div>
+            </div>
+
+            <!-- STEP 6 -->
+            <div class="step-card">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="step-badge" style="background: linear-gradient(135deg, #0f172a 0%, #334155 100%);">6</span>
+                    <h4 class="fw-bold text-dark mb-0">Return the Completed Specification</h4>
+                </div>
+                <p class="text-secondary">
+                    The engine returns the completed JSON specification. This output can then be passed to <code>jsonToDom</code> to create and display the actual HTML elements in the browser.
+                </p>
+                <div class="code-box">
+                    // 1. Return completed spec<br>
+                    return base;<br><br>
+                    // 2. Pass to jsonToDom for instant browser mounting<br>
+                    window.ks.jsonToDom.appendToDom({<br>
+                    &nbsp;&nbsp;jsonSpec: spec,<br>
+                    &nbsp;&nbsp;targetHtmlId: "dom-render-container"<br>
+                    });
+                </div>
+            </div>
 
             <!-- NAVIGATION -->
             <div class="d-flex justify-content-between align-items-center pt-3">
-                <a href="the-story.html" class="btn btn-outline-secondary">
+                <a href="the-story.html" class="btn btn-outline-secondary px-4 py-2 rounded-3 fw-bold hover-pop">
                     &larr; The Story
                 </a>
-                <a href="samples-showcase.html" class="btn btn-primary fw-semibold">
-                    Explore 4-Tier Showcase &rarr;
+                <a href="samples-showcase.html" class="btn btn-primary px-4 py-2 rounded-3 fw-bold hover-pop shadow-sm">
+                    View Components Gallery &rarr;
                 </a>
             </div>
 
@@ -249,12 +284,19 @@ runInstructions({
             <span>&copy; 2026 <strong>json-renderers-run-instructions</strong>. MIT License.</span>
             <div class="d-flex gap-3">
                 <a href="../index.html" class="text-decoration-none text-muted">Home</a>
-                <a href="the-story.html" class="text-decoration-none text-muted">Story</a>
-                <a href="architecture.html" class="text-decoration-none text-muted">Architecture</a>
+                <a href="the-story.html" class="text-decoration-none text-muted">The Story</a>
+                <a href="architecture.html" class="text-decoration-none text-muted">How It Works</a>
                 <a href="samples-showcase.html" class="text-decoration-none text-muted">Showcase</a>
             </div>
         </div>
     </footer>
 
+    <script>
+        const spotlight = document.getElementById('spotlight');
+        window.addEventListener('mousemove', (e) => {
+            spotlight.style.left = e.clientX + 'px';
+            spotlight.style.top = e.clientY + 'px';
+        });
+    </script>
 </body>
 </html>
