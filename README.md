@@ -7,6 +7,11 @@
 [![npm downloads](https://img.shields.io/npm/dm/json-renderers-run-instructions.svg?color=2563eb)](https://www.npmjs.com/package/json-renderers-run-instructions)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![CDN Bundle](https://img.shields.io/badge/CDN-dist%2Fmin.js-orange.svg)](https://keshavsoft.github.io/json-renderers-run-instructions/dist/min.js)
+[![Documentation](https://img.shields.io/badge/Documentation-Live%20Docs-2563eb.svg)](docs/index.html)
+[![Launch Pad](https://img.shields.io/badge/Demo-Launch%20Pad%20(v15)-success.svg)](samples/v15/index.html)
+
+> 🌐 **Live Documentation & Interactive Stories**: [docs/index.html](docs/index.html)  
+> 🚀 **V15 Declarative UI Launch Pad (Direct, Containers, Compose & Composite)**: [samples/v15/index.html](samples/v15/index.html)
 
 ---
 
