@@ -1,4 +1,8 @@
-import { spec, definitions } from "spec-repo";
+// import { spec, definitions } from "spec-repo";
+
+import { definitions } from "declarative-definitions";
+import { spec } from "declarative-spec";
+
 import runInstructions from "json-renderers-run-instructions-steps";
 
 import runOptions from "./runOptions/index.js";
